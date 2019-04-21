@@ -6,6 +6,7 @@ import history from '../history'
  */
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
+const EDIT_USER = 'EDIT_USER'
 
 /**
  * INITIAL STATE
@@ -17,10 +18,20 @@ const defaultUser = {}
  */
 const getUser = user => ({type: GET_USER, user})
 const removeUser = () => ({type: REMOVE_USER})
+const editUser = user => ({type: EDIT_USER, user})
 
 /**
  * THUNK CREATORS
  */
+export const updateUser = (updateInfo, id) => async dispatch => {
+  try {
+    const res = await axios.put(`/api/users/${id}`, updateInfo)
+    dispatch(editUser(res.data))
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export const me = () => async dispatch => {
   try {
     const res = await axios.get('/auth/me')
@@ -40,7 +51,11 @@ export const auth = (email, password, method) => async dispatch => {
 
   try {
     dispatch(getUser(res.data))
-    history.push('/home')
+    if(res.data.accountSetUp === false) {
+      history.push('/updateuser')
+    } else {
+      history.push('/home')
+    }
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
   }
