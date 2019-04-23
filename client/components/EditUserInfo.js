@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {updateUser} from '../store/user';
+import {updateUser, me} from '../store/user';
 import history from '../history';
 
 
@@ -19,6 +19,10 @@ class EditUserInfo extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.currUser();
   }
 
   handleChange(evt) {
@@ -67,6 +71,9 @@ const mapDispatchToProps = dispatch => {
   return {
     update: (updateInfo, userId) => {
       dispatch(updateUser(updateInfo, userId));
+    },
+    currUser: () => {
+      dispatch(me());
     }
   }
 }

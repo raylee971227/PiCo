@@ -23,10 +23,18 @@ const editUser = user => ({type: EDIT_USER, user})
 /**
  * THUNK CREATORS
  */
+
+export const fetchSingleUser = userId => async dispatch => {
+  const res = await axios.get(`/api/users/${userId}`);
+  const user = res.data[0];
+  dispatch(getUser(user));
+} 
+
 export const updateUser = (updateInfo, id) => async dispatch => {
   try {
     const res = await axios.put(`/api/users/${id}`, updateInfo)
-    dispatch(editUser(res.data))
+    const user = res.data;
+    dispatch(editUser(user[0]));
   } catch (error) {
     console.log(error)
   }
