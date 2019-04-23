@@ -11,7 +11,7 @@ class UserProfilePage extends Component {
   render() {
     return (
       <div>
-        <h1>Welcome to your profile!! {this.props.user.userName}</h1>
+        <h3>Welcome to your profile {this.props.user.firstName} {this.props.user.lastName}!!!</h3>
       </div>
     )  
   }
