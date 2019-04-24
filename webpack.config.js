@@ -20,6 +20,7 @@ module.exports = {
     ignored: /node_modules/
   },
   module: {
+    
     rules: [
       {
         test: /\.jsx?$/,
@@ -32,6 +33,10 @@ module.exports = {
           fallback: "style-loader",
           use: "css-loader!sass-loader",
         })
+      },
+      { // css for webpack
+        test: /\.css$/,  
+        use: ['style-loader', 'css-loader'],
       }
     ]
   },
