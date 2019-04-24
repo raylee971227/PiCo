@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { logout } from '../store'
@@ -23,15 +22,15 @@ class Navbar extends Component {
   render() {
     return (
       <div>
-        <h1 href="#" onClick={this.handlePiCo}>PiCo</h1>
+        <h1 href="/#" onClick={this.handlePiCo}>PiCo</h1>
         <nav>
           {this.props.isLoggedIn ? (
             <div>
               {/* The navbar will show these links after you log in */}
               <Link to="/home">Home</Link>
-              <a href="#" onClick={this.handleProfile}>My Profile</a>
-              <Link to="/updateuser">Edit Info</Link>
-              <a href="#" onClick={this.props.handleClick}>
+              <a onClick={this.handleProfile}>My Profile</a>
+              {/* <Link to="/updateuser">Edit Info</Link> */}
+              <a onClick={this.props.handleClick}>
                 Logout
           </a>
             </div>

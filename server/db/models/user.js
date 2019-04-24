@@ -18,6 +18,10 @@ const User = db.define('user', {
     unique: true,
     allowNull: false
   },
+  name: {
+    type: Sequelize.STRING,
+    allowNull: true
+  },
   firstName: {
     type: Sequelize.STRING,
     allowNull: true,
@@ -25,6 +29,10 @@ const User = db.define('user', {
   lastName: {
     type: Sequelize.STRING,
     allowNull: true,
+  },
+  profilePicture: {
+    type: Sequelize.STRING({length: 1000}),
+    defaultValue: "https://banner2.kisspng.com/20180828/sxw/kisspng-clip-art-computer-icons-user-download-chamber-of-d-talonpaw-svg-png-icon-free-download-175238-on-5b84c95a116717.2809616615354289540713.jpg"
   },
   password: {
     type: Sequelize.STRING,

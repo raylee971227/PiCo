@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {fetchSingleUser} from '../store/user';
+import {UserCard} from './';
+
 
 
 class UserProfilePage extends Component {
@@ -10,8 +12,12 @@ class UserProfilePage extends Component {
 
   render() {
     return (
+      // <div>
+      //   <h3>Welcome to your profile {this.props.user.firstName} {this.props.user.lastName}!!!</h3>
+      //   <img src={this.props.user.profilePicture} width="100" height="100"></img>
+      // </div>
       <div>
-        <h3>Welcome to your profile {this.props.user.firstName} {this.props.user.lastName}!!!</h3>
+        <UserCard user={this.props.user} />
       </div>
     )  
   }
