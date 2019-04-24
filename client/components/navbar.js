@@ -19,6 +19,17 @@ class Navbar extends Component {
     history.push(`/users/${this.props.user.id}`);
   }
 
+  handleSubmit(event) {
+
+    event.preventDefault();
+    return this.Search();
+  }
+
+  async Search() {
+    var url ='postgres://localhost:5432/${databaseName}';
+
+  }
+
   render() {
     return (
       <div>
@@ -33,6 +44,19 @@ class Navbar extends Component {
               <a onClick={this.props.handleClick}>
                 Logout
           </a>
+
+            <form onSubmit={this.handleSubmit}>
+            <input 
+                    id="searchbar" 
+                    name="nav"
+                    type="text" 
+                    value={this.state.nav}
+                    onChange={this.handleChange}
+                    />
+                  <button class="Search" type="submit">Search !</button>
+
+              
+            </form>
             </div>
           ) : (
               <div>
