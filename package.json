@@ -18,7 +18,7 @@
     "postinstall": "touch secrets.js",
     "seed": "node script/seed.js",
     "start": "node server",
-    "start-dev": "NODE_ENV='development' npm run build-client-watch & NODE_ENV='development' npm run start-server",
+    "start-dev": "concurrently \" cross-env  NODE_ENV='development' npm run build-client-watch\" \"cross-env NODE_ENV='development' npm run start-server\"",
     "start-server": "nodemon server -e html,js,scss --ignore public --ignore client",
     "test": "NODE_ENV='test' mocha \"./server/**/*.spec.js\" \"./client/**/*.spec.js\" \"./script/**/*.spec.js\" --require @babel/polyfill --require @babel/register"
   },
@@ -33,12 +33,14 @@
       "git add"
     ]
   },
-  "author": "Raymond Lee",
+  "author": "Raymond Lee and 3 others",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.18.0",
     "compression": "^1.7.3",
+    "concurrently": "^4.1.0",
     "connect-session-sequelize": "^6.0.0",
+    "cross-env": "^5.2.0",
     "express": "^4.16.4",
     "express-session": "^1.15.1",
     "history": "^4.9.0",
