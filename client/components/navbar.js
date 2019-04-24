@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { logout } from '../store'
 import history from '../history'
+import "./css/nav.css"
 
 class Navbar extends Component {
   constructor() {
@@ -34,7 +35,7 @@ class Navbar extends Component {
     return (
       <div>
         <h1 href="/#" onClick={this.handlePiCo}>PiCo</h1>
-        <nav>
+        <nav id="Navbar">
           {this.props.isLoggedIn ? (
             <div>
               {/* The navbar will show these links after you log in */}
@@ -43,19 +44,16 @@ class Navbar extends Component {
               {/* <Link to="/updateuser">Edit Info</Link> */}
               <a onClick={this.props.handleClick}>
                 Logout
-          </a>
+              </a>
 
-            <form onSubmit={this.handleSubmit}>
-            <input 
-                    id="searchbar" 
-                    name="nav"
-                    type="text" 
-                    value={this.state.nav}
+            <form id="Search"  onSubmit={this.handleSubmit}>
+                  <input 
+                    id="SearchBar"
+                    type="text"
+                    placeholder="Type Something !"
                     onChange={this.handleChange}
                     />
-                  <button class="Search" type="submit">Search !</button>
-
-              
+                  <button id="SearchButton" type="submit">Search !</button>
             </form>
             </div>
           ) : (
