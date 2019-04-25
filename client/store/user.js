@@ -5,6 +5,8 @@ import history from '../history'
  * ACTION TYPES
  */
 const GET_USER = 'GET_USER'
+const GET_USERNAME = 'GET_USERNAME'
+
 const REMOVE_USER = 'REMOVE_USER'
 const EDIT_USER = 'EDIT_USER'
 
@@ -17,6 +19,8 @@ const defaultUser = {}
  * ACTION CREATORS
  */
 const getUser = user => ({type: GET_USER, user})
+const getUsername = user => ({type: GET_USERNAME, user})
+
 const removeUser = () => ({type: REMOVE_USER})
 const editUser = user => ({type: EDIT_USER, user})
 
@@ -28,6 +32,12 @@ export const fetchSingleUser = userId => async dispatch => {
   const res = await axios.get(`/api/users/${userId}`);
   const user = res.data[0];
   dispatch(getUser(user));
+} 
+
+export const fetchUserFromID = username => async dispatch => {
+  const res = await axios.get(`/api/users/${username}`);
+  const user = res.data[0];
+  dispatch(getUsername(user));
 } 
 
 export const updateUser = (updateInfo, id) => async dispatch => {
@@ -85,6 +95,8 @@ export const logout = () => async dispatch => {
 export default function(state = defaultUser, action) {
   switch (action.type) {
     case GET_USER:
+      return action.user
+    case GET_USERNAME:
       return action.user
     case REMOVE_USER:
       return defaultUser

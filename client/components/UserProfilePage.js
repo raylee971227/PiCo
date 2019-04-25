@@ -11,18 +11,18 @@ class UserProfilePage extends Component {
   }
 
   render() {
-    return (
-      // <div>
-      //   
-      // </div>
+    return (  
       <div>
-          <h3>Welcome to your profile {this.props.user.firstName} {this.props.user.lastName}!!!</h3>
-          <img src={this.props.user.profilePicture} width="100" height="100"></img>
+        Welcome To Your Page
         <UserCard user={this.props.user} />
       </div>
     )  
   }
 }
+
+/**
+ * CONTAINER
+ */
 
 const mapStateToProps = state => {
   return {
@@ -37,6 +37,7 @@ const mapDispatchToProps = dispatch => {
     }
   }
 }
+
 
 const connectedUserProfilePage = connect(mapStateToProps, mapDispatchToProps);
 

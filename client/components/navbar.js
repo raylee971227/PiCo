@@ -2,14 +2,20 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { logout } from '../store'
+import {fetchUserFromID} from '../store/user';
+
 import history from '../history'
 import "./css/nav.css"
+
+
+
 
 class Navbar extends Component {
   constructor() {
     super()
     this.handleProfile = this.handleProfile.bind(this)
     this.handlePiCo = this.handlePiCo.bind(this)
+    this.handleSearch = this.handleSearch.bind(this)
   }
 
   handlePiCo() {
@@ -20,15 +26,20 @@ class Navbar extends Component {
     history.push(`/users/${this.props.user.id}`);
   }
 
-  handleSubmit(event) {
-
+  handleSearch(event) {
+    var searched =  document.getElementById('SearchBar').value
     event.preventDefault();
-    return this.Search();
+    return this.Search(searched);
   }
 
-  async Search() {
-    var url ='postgres://localhost:5432/${databaseName}';
+  Search(param1) {
+    console.log(param1);
 
+    var url ='postgres://localhost:5432/${databaseName}';
+    this.props.fetchUser(param1);
+
+    console.log(`${this.props.user}`)
+    //history.push('/profileviewer');
   }
 
   render() {
@@ -46,12 +57,11 @@ class Navbar extends Component {
                 Logout
               </a>
 
-            <form id="Search"  onSubmit={this.handleSubmit}>
+            <form id="Search"  onSubmit={this.handleSearch}>
                   <input 
                     id="SearchBar"
                     type="text"
                     placeholder="Type Something !"
-                    onChange={this.handleChange}
                     />
                   <button id="SearchButton" type="submit">Search !</button>
             </form>
@@ -84,6 +94,9 @@ const mapDispatch = dispatch => {
   return {
     handleClick() {
       dispatch(logout())
+    },
+    fetchUser: username => {
+      dispatch(fetchUserFromID(username));
     }
   }
 }
