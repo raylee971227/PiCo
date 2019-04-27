@@ -36,6 +36,7 @@
   "author": "Raymond Lee and 3 others",
   "license": "MIT",
   "dependencies": {
+    "@google-cloud/storage": "^2.5.0",
     "axios": "^0.18.0",
     "compression": "^1.7.3",
     "concurrently": "^4.1.0",
@@ -49,6 +50,7 @@
     "passport-google-oauth": "^2.0.0",
     "pg": "^7.9.0",
     "pg-hstore": "^2.3.2",
+    "process": "^0.11.10",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
