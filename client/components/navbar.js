@@ -21,7 +21,6 @@ class Navbar extends Component {
   }
 
   handleSubmit(event) {
-
     event.preventDefault();
     return this.Search();
   }
@@ -41,11 +40,10 @@ class Navbar extends Component {
               {/* The navbar will show these links after you log in */}
               <Link to="/home">Home</Link>
               <a onClick={this.handleProfile}>My Profile</a>
-              {/* <Link to="/updateuser">Edit Info</Link> */}
               <a onClick={this.props.handleClick}>
                 Logout
               </a>
-
+              <Link to="/upload">Upload Album</Link>
             <form id="Search"  onSubmit={this.handleSubmit}>
                   <input 
                     id="SearchBar"
