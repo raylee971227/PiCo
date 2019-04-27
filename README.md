@@ -1,3 +1,7 @@
+PICO
+
+Minyoung Na  / Ray Lee / Mrigank Saksena / Iris Huang
+
 # Boilermaker
 
 _Good things come in pairs_
