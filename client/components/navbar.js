@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { logout } from '../store'
-import {fetchUserFromID} from '../store/user';
+import {fetchUserFromID} from '../store/targetuser';
 
 import history from '../history'
 import "./css/nav.css"

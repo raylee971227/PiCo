@@ -8,6 +8,7 @@ const GET_USER = 'GET_USER'
 
 const GET_USERNAME = 'GET_USERNAME'
 const GET_USERFAILED = 'GET_USERFAILED'
+const GET_TARGETUSER = 'GET_TARGETUSER'
 
 const REMOVE_USER = 'REMOVE_USER'
 const EDIT_USER = 'EDIT_USER'
@@ -16,14 +17,12 @@ const EDIT_USER = 'EDIT_USER'
  * INITIAL STATE
  */
 const defaultUser = {}
-const targetuser = {}
+
 /**
  * ACTION CREATORS
  */
 const getUser = user => ({type: GET_USER, user})
 
-const getUsername = user => ({type: GET_USERNAME, user})
-const getnamefailed = error =>({type:GET_USERFAILED, error})
 
 const removeUser = () => ({type: REMOVE_USER})
 const editUser = user => ({type: EDIT_USER, user})
@@ -36,21 +35,6 @@ export const fetchSingleUser = userId => async dispatch => {
   const res = await axios.get(`/api/users/${userId}`);
   const user = res.data[0];
   dispatch(getUser(user));
-} 
-
-export const fetchUserFromID = username => async dispatch => {
-  const tempres = await axios.get(`/api/users/`);
-  const error = "Search Failed ! Maybe there was a typo?"
-  console.log(tempres.data[0]);
-
-  for (var i = 0; i < tempres.data.length; i++) {
-    if (username == tempres.data[i].userName  ){
-      const res = await axios.get(`/api/users/${i+1}`);
-      const targetuser = res.data[0];
-      dispatch(getUser(targetuser));
-      history.push(`/profileviewer/${targetuser.id}`)
-    }
-  }  
 } 
 
 export const updateUser = (updateInfo, id) => async dispatch => {
@@ -105,14 +89,10 @@ export const logout = () => async dispatch => {
 /**
  * REDUCER
  */
-export default function(state = defaultUser, action) {
+export default function user (state = defaultUser, action) {
   switch (action.type) {
     case GET_USER:
       return action.user
-    case GET_USERNAME:
-      return action.user
-    case GET_USERFAILED:
-      return action.error
     case REMOVE_USER:
       return defaultUser
     default:

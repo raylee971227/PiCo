@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux';
-import {fetchSingleUser} from '../store/user';
+import {fetchTargetUser} from '../store/targetuser';
 import {UserCard_other} from './';
 
 
@@ -14,7 +14,7 @@ class UserProfileViewer extends Component {
     return (  
       <div>
         Welcome To Someone Else's Page
-        <UserCard_other user={this.props.user} />
+        <UserCard_other user={this.props.targetuser} />
 
       </div>
     )  
@@ -27,14 +27,14 @@ class UserProfileViewer extends Component {
 
 const mapState = state => {
   return {
-    user: state.user
+    targetuser: state.targetuser
   }
 }
 
 const mapDispatch = dispatch => {
   return {
     fetchUser: userId => {
-      dispatch(fetchSingleUser(userId));
+      dispatch(fetchTargetUser(userId));
     }    
   }
 }
