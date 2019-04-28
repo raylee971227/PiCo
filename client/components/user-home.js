@@ -16,8 +16,7 @@ class UserHome extends Component {
   render() {
     return (
       <div>
-        <h3>Welcome, {this.props.email}</h3>
-      </div>
+<img src="https://i.kym-cdn.com/entries/icons/original/000/029/223/cover2.jpg" alt="Smiley face" width="50%" height="50%"></img>      </div>
     )
   }
 }

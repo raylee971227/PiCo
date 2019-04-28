@@ -8,7 +8,8 @@ import {
   UserHome, 
   EditUserInfo, 
   UserProfilePage,
-  UploadAlbumPage
+  UploadAlbumPage,
+  UserProfileViewer
 } from './components'
 
 import {me} from './store'
@@ -36,6 +37,7 @@ class Routes extends Component {
             <Route path="/updateuser" component={EditUserInfo} />
             <Route path="/users/:id" component={UserProfilePage} />
             <Route path="/upload" component={UploadAlbumPage} />
+            <Route path="/profileviewer/:id" component={UserProfileViewer} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
