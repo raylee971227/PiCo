@@ -1,16 +1,18 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types'
 import {connect} from 'react-redux';
 import {fetchSingleUser} from '../store/user';
 import {UserCard} from './';
 
 
-
-export default class UserProfileViewer extends Component {
+class UserProfileViewer extends Component {
  
+
   render() {
     return (  
       <div>
-        {this.props.user}
+        Welcome To Someone Else's Page
+        <p>ppepeppepapape{this.props.targetuser.userName}</p>
       </div>
     )  
   }
@@ -19,3 +21,11 @@ export default class UserProfileViewer extends Component {
 /**
  * CONTAINER
  */
+
+const mapStateToProps = state => {
+  return {
+    targetuser: state.targetuser
+  }
+}
+
+export default  connect(mapStateToProps)(UserProfileViewer);

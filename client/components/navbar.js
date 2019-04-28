@@ -33,13 +33,9 @@ class Navbar extends Component {
   }
 
   Search(param1) {
-    console.log(param1);
 
-    var url ='postgres://localhost:5432/${databaseName}';
     this.props.fetchUser(param1);
 
-    console.log(`${this.props.user}`)
-    //history.push('/profileviewer');
   }
 
   render() {
@@ -63,7 +59,7 @@ class Navbar extends Component {
                     type="text"
                     placeholder="Type Something !"
                     />
-                  <button id="SearchButton" type="submit">Search !</button>
+                <button id="SearchButton" type="submit">  Search !</button>
             </form>
             </div>
           ) : (
@@ -86,7 +82,9 @@ class Navbar extends Component {
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
-    user: state.user
+    user: state.user,
+    targetuser:state.targetuser,
+    error: state.error
   }
 }
 
