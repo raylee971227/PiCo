@@ -2,17 +2,20 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux';
 import {fetchSingleUser} from '../store/user';
-import {UserCard} from './';
+import {UserCard_other} from './';
 
 
 class UserProfileViewer extends Component {
- 
+  componentDidMount() {
+    this.props.fetchUser(this.props.match.params.id);
+  }
 
   render() {
     return (  
       <div>
         Welcome To Someone Else's Page
-        <p>ppepeppepapape{this.props.targetuser.userName}</p>
+        <UserCard_other user={this.props.user} />
+
       </div>
     )  
   }
@@ -22,10 +25,18 @@ class UserProfileViewer extends Component {
  * CONTAINER
  */
 
-const mapStateToProps = state => {
+const mapState = state => {
   return {
-    targetuser: state.targetuser
+    user: state.user
   }
 }
 
-export default  connect(mapStateToProps)(UserProfileViewer);
+const mapDispatch = dispatch => {
+  return {
+    fetchUser: userId => {
+      dispatch(fetchSingleUser(userId));
+    }    
+  }
+}
+
+export default  connect(mapState,mapDispatch)(UserProfileViewer);

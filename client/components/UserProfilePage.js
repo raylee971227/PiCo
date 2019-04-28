@@ -13,8 +13,10 @@ class UserProfilePage extends Component {
   render() {
     return (  
       <div>
-        Welcome To Your Page
-        <UserCard user={this.props.user} />
+            
+            Welcome To Your Page
+            <UserCard user={this.props.user} />
+    
       </div>
     )  
   }

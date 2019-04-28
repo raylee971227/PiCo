@@ -39,19 +39,16 @@ export const fetchSingleUser = userId => async dispatch => {
 } 
 
 export const fetchUserFromID = username => async dispatch => {
-  let idfound;
   const tempres = await axios.get(`/api/users/`);
   const error = "Search Failed ! Maybe there was a typo?"
   console.log(tempres.data[0]);
-
-  //dispatch(getnamefailed(error));
 
   for (var i = 0; i < tempres.data.length; i++) {
     if (username == tempres.data[i].userName  ){
       const res = await axios.get(`/api/users/${i+1}`);
       const targetuser = res.data[0];
-      console.log(targetuser);
-      dispatch(getUsername(targetuser));
+      dispatch(getUser(targetuser));
+      history.push(`/profileviewer/${targetuser.id}`)
     }
   }  
 } 

@@ -35,7 +35,7 @@ class Navbar extends Component {
   Search(param1) {
 
     this.props.fetchUser(param1);
-
+  
   }
 
   render() {
