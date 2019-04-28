@@ -52,7 +52,7 @@ class Navbar extends Component {
               <a onClick={this.props.handleClick}>
                 Logout
               </a>
-
+              
             <form id="Search"  onSubmit={this.handleSearch}>
                   <input 
                     id="SearchBar"
@@ -61,6 +61,7 @@ class Navbar extends Component {
                     />
                 <button id="SearchButton" type="submit">  Search !</button>
             </form>
+            <p>logged in as {this.props.user.userName}</p>
             </div>
           ) : (
               <div>

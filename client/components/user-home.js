@@ -9,7 +9,8 @@ export const UserHome = props => {
   const {email} = props
   return (
     <div>
-      <h3>Welcome, {email}</h3>
+      <img src="https://i.kym-cdn.com/entries/icons/original/000/029/223/cover2.jpg" alt="Smiley face" width="50%" height="50%"></img>
+
     </div>
   )
 }
