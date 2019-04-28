@@ -28,12 +28,13 @@ class Navbar extends Component {
 
   handleSearch(event) {
     var searched =  document.getElementById('SearchBar').value
+    console.log("debug");
+
     event.preventDefault();
     return this.Search(searched);
   }
 
   Search(param1) {
-
     this.props.fetchUser(param1);
   
   }
@@ -52,7 +53,7 @@ class Navbar extends Component {
                 Logout
               </a>
               <Link to="/upload">Upload Album</Link>
-            <form id="Search"  onSubmit={this.handleSubmit}>
+            <form id="Search"  onSubmit={this.handleSearch}>
                   <input 
                     id="SearchBar"
                     type="text"
