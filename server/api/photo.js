@@ -31,6 +31,13 @@ function checkFileType(file, cb){
     cb('Error: Images Only!');
   }
 }
+
+const upload = multer({
+  storage: multer.MemoryStorage,
+  fileFilter: function(req, file, cb){
+    checkFileType(file, cb);
+  }
+})
 // const storage = multer.diskStorage({
 //   destination: function(req, file, cb) {
 //     cb(null, './uploads/');
@@ -50,12 +57,7 @@ function checkFileType(file, cb){
 //   }
 // });
 
-const upload = multer({
-  storage: multer.MemoryStorage,
-  fileFilter: function(req, file, cb){
-    checkFileType(file, cb);
-  }
-})
+
 
 
 // A bucket is a container for objects (files).
@@ -123,22 +125,24 @@ router.post("/", upload.single('photo'), (req, res, next) => {
 
 
 /**
- * API Endpoint: http://localhost:8080/api/photo
+ * API Endpoint: http://localhost:8080/api/photo/photoId
  * Get photo with photoId
  */
-router.get('/:id', async (req, res, next) => {
+router.get('/:photoId', async (req, res, next) => {
   try {
     const photo = await Photo.findAll({
       where: {
-        photoId: req.params.id
+        photoId: req.params.photoId
       }
     })
+    //res.redirect(photo.photoPath)
     res.json(photo)
   } catch (err) {
     next(err);
   }
 });
 
+// Only delete the picture from the db. Photo still remains on the cloud
 router.delete('/:id', async (req, res, next) => {
   try {
     Photo.destroy({where: {photoId: req.params.id}})
