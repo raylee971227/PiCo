@@ -5,7 +5,7 @@ import { logout } from '../store'
 import {fetchUserFromID} from '../store/targetuser';
 
 import history from '../history'
-import "./css/nav.css"
+import "../../public/style.css"
 
 
 

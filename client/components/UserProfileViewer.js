@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux';
 import {fetchTargetUser} from '../store/targetuser';
 import {UserCard} from './';
-import {Link} from 'react-router-dom'
 
 
 class UserProfileViewer extends Component {
