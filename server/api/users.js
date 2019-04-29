@@ -1,6 +1,41 @@
 const router = require('express').Router()
 const {User} = require('../db/models')
+const multer = require('multer')
 module.exports = router
+
+
+function checkFileType(file, cb){
+  // Allowed ext
+  const filetypes = /jpeg|jpg|png|gif/;
+  // Check ext
+  const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+  // Check mime
+  const mimetype = filetypes.test(file.mimetype);
+
+  if(mimetype && extname){
+    return cb(null,true);
+  } else {
+    cb('Error: Images Only!');
+  }
+}
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, './user/profileUpload/');
+  },
+  filename: function(req, file, cb) {
+    cb(null, req.params.userName + '-' + file.originalname);
+  }
+});
+
+const upload = multer({
+  storage: storage,
+  // limits: {
+  //   fileSize: 1024 * 1024 * 5
+  // },
+  fileFilter: function(req, file, cb){
+    checkFileType(file, cb);
+  }
+});
 
 router.get('/', async (req, res, next) => {
   try {
@@ -42,3 +77,19 @@ router.put('/:id', async (req, res, next) => {
     next(err);
   }
 })
+
+router.post("/", upload.single('profilePic'), (req, res, next) => {
+  User.create({userName: req.body.userName, email: req.body.email, profilePicture:req.body.path})
+    .then(result => {
+      console.log(result);
+      res.status(201).json({
+        message: "Upload profile picture successfully"
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({
+        error: err
+      });
+    });
+});

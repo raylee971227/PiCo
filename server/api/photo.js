@@ -8,20 +8,26 @@ module.exports = router
 // Instantiate a storage client
 //const storage = Storage();
 
-const fileFilter = (req, file, cb) => {
-  if (file.mimeType === 'image/jpeg' || file.mimeType === 'image/png')
-  {
-    cb(null, true);
+function checkFileType(file, cb){
+  // Allowed ext
+  const filetypes = /jpeg|jpg|png|gif/;
+  // Check ext
+  const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+  // Check mime
+  const mimetype = filetypes.test(file.mimetype);
+
+  if(mimetype && extname){
+    return cb(null,true);
   } else {
-    cb(new Error('File type is not acceptable, upload failed'), false);
+    cb('Error: Images Only!');
   }
-};
+}
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
     cb(null, './uploads/');
   },
   filename: function(req, file, cb) {
-    cb(null, new Date().toISOString() + file.originalname);
+    cb(null, req.params.albumId + '-' + file.originalname);
   }
 });
 
@@ -30,7 +36,9 @@ const upload = multer({
   // limits: {
   //   fileSize: 1024 * 1024 * 5
   // },
- // fileFilter: fileFilter
+  fileFilter: function(req, file, cb){
+    checkFileType(file, cb);
+  }
 });
 // const upload = Multer({
 //   storage: Multer.memoryStorage(),
@@ -44,6 +52,10 @@ const upload = multer({
 // A bucket is a container for objects (files).
 //const bucket = storage.bucket(process.env.GCLOUD_STORAGE_BUCKET);
 
+/**
+ * API Endpoint: http://localhost:8080/api/photo
+ * Get all photo in the db
+ */
 router.get('/', async(req, res, next) => {
   try {
     const photo = await Photo.findAll({
@@ -55,13 +67,17 @@ router.get('/', async(req, res, next) => {
   }
 });
 
+/**
+ * API Endpoint: http://localhost:8080/api/photo
+ * upload a picture to db
+ */
 router.post("/", upload.single('photo'), (req, res, next) => {
   console.log(req.file)
   Photo.create({albumId: req.body.albumId, photoPath:req.body.path})
     .then(result => {
       console.log(result);
       res.status(201).json({
-        message: "Created photo successfully"
+        message: "upload photo successfully"
       });
     })
     .catch(err => {
@@ -71,6 +87,28 @@ router.post("/", upload.single('photo'), (req, res, next) => {
       });
     });
 });
+
+
+/**
+ * API Endpoint: http://localhost:8080/api/photo
+ * Get photo with photoId
+ */
+router.get('/:photoId', async (req, res, next) => {
+  try {
+    const photo = await Photo.findAll({
+      where: {
+        photoId: req.params.photoId
+      }
+    })
+    res.json(photo)
+  } catch (err) {
+    next(err);
+  }
+});
+
+
+
+
 
 
 
