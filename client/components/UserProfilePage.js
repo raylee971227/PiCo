@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {fetchSingleUser} from '../store/user';
 import {UserCard} from './';
+import {Link} from 'react-router-dom'
 
 
 
@@ -11,18 +12,20 @@ class UserProfilePage extends Component {
   }
 
   render() {
-    return (
-      // <div>
-      //   
-      // </div>
+    return (  
       <div>
-          <h3>Welcome to your profile {this.props.user.firstName} {this.props.user.lastName}!!!</h3>
-          <img src={this.props.user.profilePicture} width="100" height="100"></img>
-        <UserCard user={this.props.user} />
+            
+            Welcome To Your Page
+            <UserCard user={this.props.user} />
+            <Link to="/updateuser">Edit Info</Link>
       </div>
     )  
   }
 }
+
+/**
+ * CONTAINER
+ */
 
 const mapStateToProps = state => {
   return {
@@ -37,6 +40,7 @@ const mapDispatchToProps = dispatch => {
     }
   }
 }
+
 
 const connectedUserProfilePage = connect(mapStateToProps, mapDispatchToProps);
 

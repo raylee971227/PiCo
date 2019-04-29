@@ -2,14 +2,20 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { logout } from '../store'
+import {fetchUserFromID} from '../store/targetuser';
+
 import history from '../history'
-import "./css/nav.css"
+import "../../public/style.css"
+
+
+
 
 class Navbar extends Component {
   constructor() {
     super()
     this.handleProfile = this.handleProfile.bind(this)
     this.handlePiCo = this.handlePiCo.bind(this)
+    this.handleSearch = this.handleSearch.bind(this)
   }
 
   handlePiCo() {
@@ -20,14 +26,17 @@ class Navbar extends Component {
     history.push(`/users/${this.props.user.id}`);
   }
 
-  handleSubmit(event) {
+  handleSearch(event) {
+    var searched =  document.getElementById('SearchBar').value
+    console.log("debug");
+
     event.preventDefault();
-    return this.Search();
+    return this.Search(searched);
   }
 
-  async Search() {
-    var url ='postgres://localhost:5432/${databaseName}';
-
+  Search(param1) {
+    this.props.fetchUser(param1);
+  
   }
 
   render() {
@@ -44,15 +53,15 @@ class Navbar extends Component {
                 Logout
               </a>
               <Link to="/upload">Upload Album</Link>
-            <form id="Search"  onSubmit={this.handleSubmit}>
+            <form id="Search"  onSubmit={this.handleSearch}>
                   <input 
                     id="SearchBar"
                     type="text"
                     placeholder="Type Something !"
-                    onChange={this.handleChange}
                     />
-                  <button id="SearchButton" type="submit">Search !</button>
+                <button id="SearchButton" type="submit">  Search !</button>
             </form>
+            <p>logged in as {this.props.user.userName}</p>
             </div>
           ) : (
               <div>
@@ -74,7 +83,9 @@ class Navbar extends Component {
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
-    user: state.user
+    user: state.user,
+    targetuser:state.targetuser,
+    error: state.error
   }
 }
 
@@ -82,6 +93,9 @@ const mapDispatch = dispatch => {
   return {
     handleClick() {
       dispatch(logout())
+    },
+    fetchUser: username => {
+      dispatch(fetchUserFromID(username));
     }
   }
 }

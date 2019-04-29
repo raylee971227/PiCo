@@ -5,10 +5,34 @@ body {
   body label {
     display: block; }
   body nav a {
-    display: inline-block;
-    margin: 1em; }
+    display: inline;
+    margin: 0; }
   body form div {
     margin: 1em;
     display: inline-block; }
+
+#Navbar {
+  top: 0%;
+  width: 100%;
+  left: 0;
+  z-index: 100; }
+
+#Search {
+  width: 100%;
+  position: relative; }
+
+#SearchBar {
+  width: 80%;
+  margin: 1%;
+  padding: 1%;
+  position: relative; }
+
+#SearchButton {
+  width: 10%;
+  position: relative; }
+
+#Search a {
+  display: inline;
+  margin: 0em; }
 
 /*# sourceMappingURL=style.css.map*/
