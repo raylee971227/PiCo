@@ -135,7 +135,6 @@ router.get('/:photoId', async (req, res, next) => {
         photoId: req.params.photoId
       }
     })
-    //res.redirect(photo.photoPath)
     res.json(photo)
   } catch (err) {
     next(err);
