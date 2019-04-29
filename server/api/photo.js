@@ -139,6 +139,14 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
+router.delete('/:id', async (req, res, next) => {
+  try {
+    Photo.destroy({where: {photoId: req.params.id}})
+  } catch (err) {
+    next(err);
+  }
+})
+
 
 
 
