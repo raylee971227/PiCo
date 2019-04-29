@@ -6,7 +6,7 @@ module.exports = router
 
 function checkFileType(file, cb){
   // Allowed ext
-  const filetypes = /jpeg|jpg|png|gif/;
+  const filetypes = /jpeg|jpg|png/;
   // Check ext
   const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
   // Check mime
@@ -17,7 +17,8 @@ function checkFileType(file, cb){
   } else {
     cb('Error: Images Only!');
   }
-}
+};
+
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
     cb(null, './user/profileUpload/');
@@ -78,7 +79,7 @@ router.put('/:id', async (req, res, next) => {
   }
 })
 
-router.post("/", upload.single('profilePic'), (req, res, next) => {
+router.post("/:id", upload.single('profilePic'), (req, res, next) => {
   User.create({userName: req.body.userName, email: req.body.email, profilePicture:req.body.path})
     .then(result => {
       console.log(result);

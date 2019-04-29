@@ -14,8 +14,16 @@ const Albums = db.define('Albums',
 		autoIncrement: true
 	},
 
+  albumName: {
+	  type: Sequelize.STRING
+  },
 
-	// // owner of the album
+  thumbnail: {
+    type: Sequelize.STRING
+	}
+
+
+  // // owner of the album
 	// userName:
 	// {
 	//     type: Sequelize.STRING,
@@ -28,16 +36,6 @@ const Albums = db.define('Albums',
 	//     	deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
   //   	}
   //   },
-
-	albumPath: {
-		type: Sequelize.STRING,
-		AllowNull: true
-	},
-
-  thumbnail: {
-	  type: Sequelize.STRING
-  }
-
 
   //   //privacy field: wheather the album is public or private
   //   privacy:

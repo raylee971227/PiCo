@@ -1,12 +1,21 @@
 const Photo = require('../db/models/photos')
+const {Storage} = require('@google-cloud/storage');
 const multer = require('multer')
 const router = require('express').Router()
+const path = require('path')
 module.exports = router
 
-//const Storage = require('@google-cloud/storage');
 
-// Instantiate a storage client
-//const storage = Storage();
+const gcs = new Storage({
+  projectId: process.env.GOOGLE_CLOUD_PROJECT,
+  keyFilename: './KEY.JSON'
+});
+const bucketName = process.env.GCLOUD_STORAGE_BUCKET;
+const bucket = gcs.bucket(bucketName);
+
+function getPublicUrl(filename) {
+  return 'https://storage.googleapis.com/' + bucketName + '/' + filename;
+}
 
 function checkFileType(file, cb){
   // Allowed ext
@@ -22,31 +31,31 @@ function checkFileType(file, cb){
     cb('Error: Images Only!');
   }
 }
-const storage = multer.diskStorage({
-  destination: function(req, file, cb) {
-    cb(null, './uploads/');
-  },
-  filename: function(req, file, cb) {
-    cb(null, req.params.albumId + '-' + file.originalname);
-  }
-});
+// const storage = multer.diskStorage({
+//   destination: function(req, file, cb) {
+//     cb(null, './uploads/');
+//   },
+//   filename: function(req, file, cb) {
+//     cb(null, req.params.albumId + '-' + file.originalname);
+//   }
+// });
+//
+// const upload = multer({
+//   storage: storage,
+//   // limits: {
+//   //   fileSize: 1024 * 1024 * 5
+//   // },
+//   fileFilter: function(req, file, cb){
+//     checkFileType(file, cb);
+//   }
+// });
 
 const upload = multer({
-  storage: storage,
-  // limits: {
-  //   fileSize: 1024 * 1024 * 5
-  // },
+  storage: multer.MemoryStorage,
   fileFilter: function(req, file, cb){
     checkFileType(file, cb);
   }
-});
-// const upload = Multer({
-//   storage: Multer.memoryStorage(),
-//   limits: {
-//     fileSize: 5 * 1024 * 1024 // no larger than 5mb, you can change as needed.
-//   },
-//   fileFilter: fileFilter
-// });
+})
 
 
 // A bucket is a container for objects (files).
@@ -72,8 +81,32 @@ router.get('/', async(req, res, next) => {
  * upload a picture to db
  */
 router.post("/", upload.single('photo'), (req, res, next) => {
-  console.log(req.file)
-  Photo.create({albumId: req.body.albumId, photoPath:req.body.path})
+  if(!req.file) return next();
+  const gcsname = req.params.albumId + '-' + req.file.originalname;
+  const blob = bucket.file(gcsname);
+  const stream = blob.createWriteStream({
+    metadata: {
+      contentType: req.file.mimetype
+    }
+  });
+
+  stream.on('error', (err) => {
+    req.file.cloudStorageError = err;
+    next(err);
+  });
+
+  stream.on('finish', () => {
+    req.file.cloudStorageObject = gcsname;
+    req.file.cloudStoragePublicUrl = getPublicUrl(gcsname);
+    next();
+  });
+
+  stream.end(req.file.buffer);
+  const path = 'https://storage.googleapis.com/'+ bucketName+ '/' + gcsname;
+  blob.makePublic().then(() => {
+    res.status(200).send('Success!\n Image uploaded to:' + path);
+  });
+  Photo.create({albumId: req.body.albumId,photoPath:path})
     .then(result => {
       console.log(result);
       res.status(201).json({
@@ -93,11 +126,11 @@ router.post("/", upload.single('photo'), (req, res, next) => {
  * API Endpoint: http://localhost:8080/api/photo
  * Get photo with photoId
  */
-router.get('/:photoId', async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
   try {
     const photo = await Photo.findAll({
       where: {
-        photoId: req.params.photoId
+        photoId: req.params.id
       }
     })
     res.json(photo)
