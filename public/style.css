@@ -5,8 +5,8 @@ body {
   body label {
     display: block; }
   body nav a {
-    display: inline-block;
-    margin: 1em; }
+    display: inline;
+    margin: 0; }
   body form div {
     margin: 1em;
     display: inline-block; }
