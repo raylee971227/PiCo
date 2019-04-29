@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux';
 import {fetchTargetUser} from '../store/targetuser';
-import {UserCard_other} from './';
+import {UserCard} from './';
+import {Link} from 'react-router-dom'
 
 
 class UserProfileViewer extends Component {
@@ -14,7 +15,7 @@ class UserProfileViewer extends Component {
     return (  
       <div>
         Welcome To Someone Else's Page
-        <UserCard_other user={this.props.targetuser} />
+        <UserCard user={this.props.targetuser} />
 
       </div>
     )  

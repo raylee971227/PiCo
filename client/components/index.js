@@ -10,6 +10,5 @@ export {default as EditUserInfo} from './EditUserInfo'
 export {default as UserProfilePage} from './UserProfilePage'
 export {default as UserCard} from './UserCard'
 export {default as UploadAlbumPage} from './UploadAlbumPage'
-export {default as UserCard_other} from './UserCard_other'
 export {default as UserProfileViewer} from './UserProfileViewer'
 
