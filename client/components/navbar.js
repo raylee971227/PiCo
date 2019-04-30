@@ -28,7 +28,7 @@ class Navbar extends Component {
 
   handleSearch(event) {
     var searched =  document.getElementById('SearchBar').value
-    console.log("debug");
+
 
     event.preventDefault();
     return this.Search(searched);
@@ -48,20 +48,17 @@ class Navbar extends Component {
             <div>
               {/* The navbar will show these links after you log in */}
               <Link to="/home">Home</Link>
-              <a onClick={this.handleProfile}>My Profile</a>
-              <a onClick={this.props.handleClick}>
-                Logout
-              </a>
-              <Link to="/upload">Upload Album</Link>
-            <form id="Search"  onSubmit={this.handleSearch}>
+              <a onClick={this.handleProfile}> My Profile </a>
+              <a onClick={this.props.handleClick}> Logout </a>
+              <Link to="/upload"> Upload Album </Link>
+            <form id="Search" onSubmit={this.handleSearch}>
                   <input 
                     id="SearchBar"
                     type="text"
                     placeholder="Type Something !"
                     />
-                <button id="SearchButton" type="submit">  Search !</button>
+                <button id="SearchButton" type="submit"> Search </button>
             </form>
-            <p>logged in as {this.props.user.userName}</p>
             </div>
           ) : (
               <div>

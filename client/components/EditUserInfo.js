@@ -28,7 +28,7 @@ class EditUserInfo extends Component {
   handleChange(evt) {
     this.setState({
       [evt.target.name]: evt.target.value
-    })
+    });
   }
   handleSubmit(evt) {
     evt.preventDefault();
@@ -42,12 +42,13 @@ class EditUserInfo extends Component {
         {(this.props.user.accountSetUp)? (<h3>Edit Your Information</h3>):(<h3>Please fill in the marked fields</h3>)}
           <form onSubmit={this.handleSubmit}>
             <div>
+              {(this.state.accountSetUp)?(null):(<p>Please fill out the required forms (*)</p>)}
               <div>
-                <p>User Name</p>
+                <p>User Name*</p>
                 <input onChange={this.handleChange} type="text" name="userName" value={this.state.userName}/>
-                <p>First Name</p>
+                <p>First Name*</p>
                 <input onChange={this.handleChange} type="text" name="firstName" value={this.state.firstName}/>
-                <p>Last Name</p>
+                <p>Last Name*</p>
                 <input onChange={this.handleChange} type="text" name="lastName" value={this.state.lastName}/>
                 <p>Email</p>
                 <input onChange={this.handleChange} type="text" name="email" value={this.state.email}/>

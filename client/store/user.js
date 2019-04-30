@@ -22,8 +22,6 @@ const defaultUser = {}
  * ACTION CREATORS
  */
 const getUser = user => ({type: GET_USER, user})
-
-
 const removeUser = () => ({type: REMOVE_USER})
 const editUser = user => ({type: EDIT_USER, user})
 
