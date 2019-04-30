@@ -32,7 +32,7 @@ const User = db.define('user', {
   },
   profilePicture: {
     type: Sequelize.STRING({length: 1000}),
-    defaultValue: "https://i.redd.it/s2oisc1y8fs11.jpg"
+    defaultValue: "https://6536.apps.zdusercontent.com/6536/assets/1555552593-7f2ec7bf3ff4bfe408c16fb98411cd22/logo.png"
   },
   password: {
     type: Sequelize.STRING,

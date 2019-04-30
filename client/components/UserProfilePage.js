@@ -8,20 +8,20 @@ import {Link} from 'react-router-dom'
 
 
 class UserProfilePage extends Component {
-  componentDidMount() {
-    this.props.fetchUser(this.props.match.params.id);
-    this.props.fetchUserAlbums(this.props.match.params.id);
+  async componentDidMount() {
+    await this.props.fetchUser(this.props.match.params.id);
+    await this.props.fetchUserAlbums(this.props.match.params.id);
   }
 
   render() {
+    const arr = Object.values(this.props.album)
     return (  
       <div>
             
             Welcome To Your Page
             <UserCard user={this.props.user} />
             <Link to="/updateuser">Edit Info</Link>
-            <h3>{this.props.user.userName}'s Albums</h3>
-            <AlbumContainer albums={this.props.albums} />
+            <AlbumContainer albums={arr} />
       </div>
     )  
   }
@@ -34,7 +34,8 @@ class UserProfilePage extends Component {
 const mapStateToProps = state => {
   return {
     user: state.user,
-    userAlbums: state.album
+    userAlbums: state.album,
+    album: state.album
   }
 }
 

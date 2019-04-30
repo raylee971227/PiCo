@@ -41,6 +41,7 @@ export const createNewAlbum = (albumInfo) => async dispatch => {
   let album
   try {
     album = await axios.post('/api/albums/', albumInfo);
+    
     dispatch(getAlbum(album.data))
   } catch (albumCreateError) {
     console.log("problem creating new album! x_x")
@@ -57,6 +58,7 @@ export const fetchUserAlbums = userId => async dispatch => {
     const userAlbums = albums.filter((album) => {
       return (album.owner == userId)
     })
+    console.log(typeof userAlbums)
     dispatch(getAlbum(userAlbums))
   } catch (error) {
     console.log('Problem fetching albums from user # ' + userId );
