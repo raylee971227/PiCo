@@ -5,7 +5,7 @@ import {fetchUserAlbums} from '../store/album'
 import {UserCard, AlbumContainer} from './';
 import {Link} from 'react-router-dom'
 import "../../public/style.css"
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; 
+ 
 
 
 

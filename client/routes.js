@@ -9,7 +9,8 @@ import {
   EditUserInfo, 
   UserProfilePage,
   UploadAlbumPage,
-  UserProfileViewer
+  UserProfileViewer,
+  AlbumViewer
 } from './components'
 
 import {me} from './store'
@@ -39,6 +40,7 @@ class Routes extends Component {
             <Route path="/users/:id" component={UserProfilePage} />
             <Route path="/upload" component={UploadAlbumPage} />
             <Route path="/profileviewer/:id" component={UserProfileViewer} />
+            <Route path="/album/:id" component={AlbumViewer}/>
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

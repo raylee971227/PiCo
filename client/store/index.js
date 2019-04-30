@@ -5,10 +5,10 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
 import targetuser from './targetuser'
 import album from './album'
-
+import photo from './photo'
 
 const reducer = combineReducers({
-  user,targetuser, album
+  user, targetuser, album, photo
 })
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
