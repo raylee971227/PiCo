@@ -26,8 +26,6 @@ const getUsername = targetuser => ({type: GET_USERNAME, targetuser})
  */
 
 export const fetchTargetUser = userId => async dispatch => {
-  console.log('debug');
-
   const res = await axios.get(`/api/users/${userId}`);
   const targetuser = res.data[0];
   dispatch(getTargetUser(targetuser));
@@ -41,7 +39,6 @@ export const fetchUserFromID = username => async dispatch => {
     if (username == tempres.data[i].userName  ){
       const res = await axios.get(`/api/users/${i+1}`);
       const targetuser = res.data[0];
-      console.log(targetuser);
       dispatch(getUsername(targetuser));
       history.push(`/profileviewer/${targetuser.id}`);
       errorflag = false;

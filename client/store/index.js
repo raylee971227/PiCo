@@ -4,11 +4,11 @@ import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
 import targetuser from './targetuser'
+import album from './album'
 
 
 const reducer = combineReducers({
-  user
-  ,targetuser
+  user,targetuser, album
 })
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
@@ -18,3 +18,4 @@ const store = createStore(reducer, middleware)
 export default store
 export * from './user'
 export * from './targetuser'
+export * from './album'

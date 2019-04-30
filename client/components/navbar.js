@@ -25,7 +25,7 @@ class Navbar extends Component {
 
   handleSearch(event) {
     var searched =  document.getElementById('SearchBar').value
-    console.log("debug");
+
 
     event.preventDefault();
     return this.Search(searched);
@@ -59,7 +59,6 @@ class Navbar extends Component {
                     />
                 <button className="defaultbutton" id="searchbutton" type="submit">  Search !</button>
             </form>
-            <p>logged in as {this.props.user.userName}</p>
             </div>
           ) : (
               <div className="navrack">
