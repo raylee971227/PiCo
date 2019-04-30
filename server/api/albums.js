@@ -49,24 +49,56 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+router.get('/:albumName_or_id', async (req, res, next) => {
+  try {
+    if(Number.isInteger(req.params.albumName_or_id)) {
+      const album = await Album.findAll({
+        where: {albumId: req.params.albumName_or_id}
+      })
+      res.json(album);
+    }
+    else {
+      const album = await Album.findAll({
+        where: {
+          albumName: req.params.albumName_or_id
+        }
+      })
+      res.json(album)
+    }
+  } catch (error) {
+    console.log('Could not fetch album');
+    console.log(error);
+  }
+})
+
 /**
  * API Endpoint: http://localhost:8080/api/albums
  *  POST: create a new album
  */
-router.route('/')
-  .post(function (req, res) {
-    var album = new Album();
-    if (req.body.albumName == undefined) {
-      album.albumName = album.albumId;
-    }
-    album.save(function (err, data) {
-      if (err) {
-        res.send(err);
-      }
-      res.send(data);
-    });
-  });
+// router.route('/')
+//   .post(function (req, res) {
+//     var album = new Album();
+//     if (req.body.albumName == undefined) {
+//       album.albumName = album.albumId;
+//     }
+//     album.save(function (err, data) {
+//       if (err) {
+//         res.send(err);
+//       }
+//       res.send(data);
+//     });
+//   });
 
+
+router.post('/', async (req, res, next) => {
+  try {
+    const newAlbum = await Album.create(req.body); 
+    res.status(200).json(newAlbum)
+  } catch (error) {
+    res.status(500)
+    next(error)
+  }
+})
 
 /**
  *  API Endpoint: http://localhost:8080/api/:albumId

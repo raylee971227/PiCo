@@ -82,10 +82,10 @@ router.get('/', async(req, res, next) => {
  * API Endpoint: http://localhost:8080/api/photo
  * upload a picture to db
  */
-router.post("/", upload.array('photo'), (req, res, next) => {
+router.post("/:id/:userId", upload.array('photo'), (req, res, next) => {
   if(!req.files) return next();
   req.files.forEach((file) => {
-    const gcsname = req.params.albumId + '-' + file.originalname;
+    const gcsname = req.params.id + '-' + file.originalname;
     const blob = bucket.file(gcsname);
     const stream = blob.createWriteStream({
       metadata: {
@@ -105,16 +105,13 @@ router.post("/", upload.array('photo'), (req, res, next) => {
     });
 
     stream.end(file.buffer);
-    const path = 'https://storage.googleapis.com/'+ bucketName+ '/' + gcsname;
+    const url = 'https://storage.googleapis.com/'+ bucketName+ '/' + gcsname;
     blob.makePublic().then(() => {
-      res.status(200).send('Success!\n Image uploaded to:' + path);
+      res.status(200).send('Success!\n Image uploaded to:' + url);
     });
-    Photo.create({albumId: req.body.albumId,photoPath:path})
-      .then(result => {
-        console.log(result);
-        res.status(201).json({
-          message: "upload photo successfully"
-        });
+    Photo.create({albumId: req.params.id,photoPath:url})
+      .then(() => {
+        res.status(201).redirect(`/users/${req.params.userId}`)
       })
       .catch(err => {
         console.log(err);
@@ -123,7 +120,6 @@ router.post("/", upload.array('photo'), (req, res, next) => {
         });
       });
   })
-
 });
 
 

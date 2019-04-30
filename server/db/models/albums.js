@@ -20,7 +20,15 @@ const Albums = db.define('Albums',
 
   thumbnail: {
     type: Sequelize.STRING
-	}
+  },
+  owner: {
+    type:Sequelize.INTEGER,
+    AllowNull: true
+  },
+  description: {
+    type: Sequelize.TEXT,
+    allowNull: true
+  }
 
 
   // // owner of the album
