@@ -1,21 +1,80 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, caption {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  vertical-align: baseline;
+  background: transparent; }
+
+@font-face {
+  font-family: 'expressway';
+  src: url("C:UsersMinyoungPicoPiCopublicxpressway.ttf"); }
+
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%; }
+
 body {
-  font-family: sans-serif; }
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%; }
   body a {
     text-decoration: none; }
-  body label {
-    display: block; }
   body nav a {
     display: inline;
     margin: 0; }
   body form div {
     margin: 1em;
     display: inline-block; }
-
-#Navbar {
-  top: 0%;
-  width: 100%;
-  left: 0;
-  z-index: 100; }
+  body #app {
+    height: 100%;
+    background-color: whitesmoke; }
+    body #app #page {
+      height: 100%; }
+      body #app #page .defaultbutton {
+        border: none;
+        font-family: expressway, sans-serif;
+        color: #2C6A97;
+        text-decoration: none;
+        transition: color, border-bottom .2s; }
+      body #app #page #Header {
+        width: 100%;
+        height: 14%;
+        position: absolute;
+        background: #f78154;
+        background: linear-gradient(0deg, #f78154 5%, #f4aa8d 100%, #f3bda8 100%, #f1dbd2 100%, #f0f0f0 100%); }
+        body #app #page #Header #Navbar {
+          width: 100%;
+          height: 100%;
+          width: 76%;
+          margin: 0% 10%; }
+          body #app #page #Header #Navbar #Logo {
+            font-size: 10vh;
+            color: #2C6A97;
+            font-family: expressway rg, sans-serif;
+            height: 100%;
+            position: absolute;
+            z-index: 100;
+            cursor: pointer; }
+          body #app #page #Header #Navbar .navrack {
+            text-align: right;
+            height: 100%;
+            padding: 5.3% 0%; }
+          body #app #page #Header #Navbar #navbutton {
+            font-weight: bold;
+            font-size: 2.7vh;
+            padding: 0.7% 2.6%; }
+          body #app #page #Header #Navbar #navbutton:hover {
+            color: #478CBE;
+            border-bottom: 4px solid #478CBE; }
+      body #app #page #main {
+        position: absolute;
+        top: 14%;
+        margin: 0% 10%;
+        height: 86%;
+        width: 80%; }
 
 #Search {
   width: 100%;
@@ -30,9 +89,5 @@ body {
 #SearchButton {
   width: 10%;
   position: relative; }
-
-#Search a {
-  display: inline;
-  margin: 0em; }
 
 /*# sourceMappingURL=style.css.map*/

@@ -5,7 +5,7 @@ const AlbumCard = props => {
   return(
     <div>
       
-      <a>Name of the Album !{album.name} </a> !
+      {/* <a>Name of the Album !{album.name} </a> ! */}
     
       
     </div>

@@ -7,9 +7,6 @@ import {fetchUserFromID} from '../store/targetuser';
 import history from '../history'
 import "../../public/style.css"
 
-
-
-
 class Navbar extends Component {
   constructor() {
     super()
@@ -41,11 +38,12 @@ class Navbar extends Component {
 
   render() {
     return (
-      <div>
-        <h1 href="/#" onClick={this.handlePiCo}>PiCo</h1>
+      <div id="Header">
         <nav id="Navbar">
+          <h1 className="defaultbutton" id ="Logo" href="/#" onClick={this.handlePiCo}>PiCo</h1>
+
           {this.props.isLoggedIn ? (
-            <div>
+            <div className="navrack">
               {/* The navbar will show these links after you log in */}
               <Link to="/home">Home</Link>
               <a onClick={this.handleProfile}>My Profile</a>
@@ -59,19 +57,18 @@ class Navbar extends Component {
                     type="text"
                     placeholder="Type Something !"
                     />
-                <button id="SearchButton" type="submit">  Search !</button>
+                <button className="defaultbutton" id="navbutton" type="submit">  Search !</button>
             </form>
             <p>logged in as {this.props.user.userName}</p>
             </div>
           ) : (
-              <div>
+              <div className="navrack">
                 {/* The navbar will show these links before you log in */}
-                <Link to="/login">Login</Link>
-                <Link to="/signup">Sign Up</Link>
+                <Link to="/login" className="defaultbutton" id="navbutton" className="defaultbutton">Login</Link>
+                <Link to="/signup" className="defaultbutton" id="navbutton" className="defaultbutton">Sign Up</Link>
               </div>
             )}
         </nav>
-        <hr />
       </div>
     )
   }

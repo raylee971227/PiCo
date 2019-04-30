@@ -18,8 +18,8 @@ class UserHome extends Component {
   render() {
     return (
       <div>
-        <AlbumCard album = {this.props.album}/>
-      </div>
+{/*         <AlbumCard album = {this.props.album}/>
+ */}      </div>
     )
   }
 }
@@ -29,14 +29,14 @@ class UserHome extends Component {
  */
 const mapState = state => {
   return {
-    album:state.album
-  }
+/*     album:state.album
+ */  }
 }
 const mapDispatch = dispatch => {
   return {
     fetchalbum: userId => {
-      dispatch(fetchsingleAlbum(userId));
-    }
+/*       dispatch(fetchsingleAlbum(userId));
+ */    }
   }
 }
 export default connect(mapState,mapDispatch)(UserHome)
