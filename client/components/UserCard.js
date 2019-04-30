@@ -6,7 +6,7 @@ const UserCard = props => {
   return(
     <div>
       
-      <a>{user.firstName} {user.lastName}</a> !
+      <a>{user.firstName} {user.lastName}</a>
       <img src={user.profilePicture} width="100" height="100"/>
       
     </div>

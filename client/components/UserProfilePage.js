@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {fetchSingleUser} from '../store/user';
-import {UserCard} from './';
+import {fetchUserAlbums} from '../store/album'
+import {UserCard, AlbumContainer} from './';
 import {Link} from 'react-router-dom'
 import "../../public/style.css"
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; 
@@ -9,23 +10,21 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 
 class UserProfilePage extends Component {
-  componentDidMount() {
-    this.props.fetchUser(this.props.match.params.id);
+  async componentDidMount() {
+    await this.props.fetchUser(this.props.match.params.id);
+    await this.props.fetchUserAlbums(this.props.match.params.id);
   }
 
   render() {
+    const arr = Object.values(this.props.album)
     return (  
-      
-            <div>
-  
-                      Welcome To Your Page
-    
-                       <UserCard user={this.props.user} />
-
-                      <Link  className="defaultbutton" id="navbutton" to="/updateuser">Edit Info</Link>
-                  
-            </div>
-      
+      <div>
+            
+            Welcome To Your Page
+            <UserCard user={this.props.user} />
+            <Link to="/updateuser">Edit Info</Link>
+            <AlbumContainer albums={arr} />
+      </div>
     )  
   }
 }
@@ -36,7 +35,9 @@ class UserProfilePage extends Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.user
+    user: state.user,
+    userAlbums: state.album,
+    album: state.album
   }
 }
 
@@ -44,6 +45,9 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchUser: userId => {
       dispatch(fetchSingleUser(userId));
+    },
+    fetchUserAlbums: userId => {
+      dispatch(fetchUserAlbums(userId))
     }
   }
 }

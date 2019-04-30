@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {updateUser, me} from '../store/user';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { updateUser, me } from '../store/user';
 import history from '../history';
 
 
@@ -19,6 +19,7 @@ class EditUserInfo extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.onUpload = this.onUpload.bind(this);
   }
 
   componentDidMount() {
@@ -35,27 +36,36 @@ class EditUserInfo extends Component {
     this.props.update(this.state, this.props.user.id);
     history.push('/home')
   }
+  onUpload(evt) {
+    evt.preventDefault()
+    document.getElementById("profilePhotoUpload").action = "/api/users/" + this.props.user.id 
+  } 
 
   render() {
     return (
       <React.Fragment>
-        {(this.props.user.accountSetUp)? (<h3>Edit Your Information</h3>):(<h3>Please fill in the marked fields</h3>)}
-          <form onSubmit={this.handleSubmit}>
+        {(this.props.user.accountSetUp) ? (<h3>Edit Your Information</h3>) : (<h3>Please fill out the required forms (*)</h3>)}
+        <form onSubmit={this.handleSubmit}>
+          <div>
             <div>
-              {(this.state.accountSetUp)?(null):(<p>Please fill out the required forms (*)</p>)}
-              <div>
-                <p>User Name*</p>
-                <input onChange={this.handleChange} type="text" name="userName" value={this.state.userName}/>
-                <p>First Name*</p>
-                <input onChange={this.handleChange} type="text" name="firstName" value={this.state.firstName}/>
-                <p>Last Name*</p>
-                <input onChange={this.handleChange} type="text" name="lastName" value={this.state.lastName}/>
-                <p>Email</p>
-                <input onChange={this.handleChange} type="text" name="email" value={this.state.email}/>
-              </div>
-              <button type="submit">Make Change</button>
+              <p>Profile Picture</p>
+              <img src={this.props.user.profilePicture} />
+              <form id="profilePhotoUpload" action="/" method="post" encType="multipart/form-data">
+                <input type="file" name="photo" onChange={this.onUpload}></input>
+                <input type="submit" value="Upload Image" name="submit"></input>
+              </form>
+              <p>User Name*</p>
+              <input onChange={this.handleChange} type="text" name="userName" value={this.state.userName} />
+              <p>First Name*</p>
+              <input onChange={this.handleChange} type="text" name="firstName" value={this.state.firstName} />
+              <p>Last Name*</p>
+              <input onChange={this.handleChange} type="text" name="lastName" value={this.state.lastName} />
+              <p>Email</p>
+              <input onChange={this.handleChange} type="text" name="email" value={this.state.email} />
             </div>
-          </form>
+            <button type="submit">Make Change</button>
+          </div>
+        </form>
       </React.Fragment>
     )
   }

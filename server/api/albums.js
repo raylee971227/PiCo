@@ -40,10 +40,10 @@ const upload = multer({
 
 router.get('/', async (req, res, next) => {
   try {
-    const users = await Album.findAll({
-      attributes: ['albumName', 'albumId','thumbnail']
+    const albums = await Album.findAll({
+      attributes: ['albumName', 'albumId','thumbnail', 'owner']
     })
-    res.json(users)
+    res.json(albums)
   } catch (err) {
     next(err)
   }
@@ -135,7 +135,7 @@ router.post("/:albumName", upload.single('thumbnail'), (req, res, next) => {
       albumName: req.params.albumName
     }
   }).then(result => {
-    console.log(result);
+    // console.log(result);
     res.status(201).json({
       message: "Upload thumbnail successfully"
     });

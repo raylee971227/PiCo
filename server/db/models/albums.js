@@ -19,7 +19,8 @@ const Albums = db.define('Albums',
   },
 
   thumbnail: {
-    type: Sequelize.STRING
+    type: Sequelize.TEXT,
+    defaultValue:"https://upload.wikimedia.org/wikipedia/en/thumb/5/54/Public_image_ltd_album_cover.jpg/220px-Public_image_ltd_album_cover.jpg"
   },
   owner: {
     type:Sequelize.INTEGER,
