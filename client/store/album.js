@@ -4,7 +4,7 @@ import axios from 'axios'
  * ACTION TYPES
  */
 const GET_ALBUM = 'GET_ALBUM'
-
+const GET_USERS_ALBUMS = 'GET_USERS_ALBUMS'
 /**
  * INITIAL STATE
  */
@@ -48,12 +48,30 @@ export const createNewAlbum = (albumInfo) => async dispatch => {
   }
 }
 
+export const fetchUserAlbums = userId => async dispatch => {
+  let res;
+  try {
+    console.log(userId)
+    res = await axios.get('/api/albums');
+    const albums = res.data
+    const userAlbums = albums.filter((album) => {
+      return (album.owner == userId)
+    })
+    dispatch(getAlbum(userAlbums))
+  } catch (error) {
+    console.log('Problem fetching albums from user # ' + userId );
+    console.log(error);
+  }
+}
+
 /**
  * REDUCER
  */
 export default function albums (state = defaultAlbums, action) {
   switch (action.type) {
     case GET_ALBUM:
+      return action.album
+    case GET_USERS_ALBUMS:
       return action.album
     default:
       return state

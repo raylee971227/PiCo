@@ -12,4 +12,5 @@ export {default as UserCard} from './UserCard'
 export {default as AlbumCard} from './AlbumCard'
 export {default as UploadAlbumPage} from './UploadAlbumPage'
 export {default as UserProfileViewer} from './UserProfileViewer'
+export {default as AlbumContainer} from './AlbumContainer'
 

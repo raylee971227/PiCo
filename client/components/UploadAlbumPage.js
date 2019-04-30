@@ -10,6 +10,7 @@ class UploadAlbumPage extends Component {
             albumName: "",
             description: "",
             owner: this.props.user.id,
+            uploadPhoto: false
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -26,9 +27,9 @@ class UploadAlbumPage extends Component {
         })
       }
 
-    makeAlbum(evt) {
+    async makeAlbum(evt) {
         evt.preventDefault();
-        this.props.getAlbumByName(this.state.albumName);
+        await this.props.getAlbumByName(this.state.albumName);
         if(this.props.album.length === 0) {
             this.props.newAlbum({
                 albumName: this.state.albumName,
@@ -36,6 +37,9 @@ class UploadAlbumPage extends Component {
                 owner: this.state.owner
             })
             alert('Album name valid!!');
+            this.setState({
+                uploadPhoto: true
+            })
         }
         else {
             alert('Album with the same name exists! Please use another name');
@@ -66,14 +70,14 @@ class UploadAlbumPage extends Component {
                         </div>
                     </form>
                 </div>
-                <h3>Choose your images!</h3>
+                {(this.state.uploadPhoto)?(<div><h3>Choose your images!</h3>
                 <div>
                     <form id="photoUplaod" action="/api/photo/" method="post" encType="multipart/form-data">
                         <input type="file" name="photo" multiple onChange={this.onUpload}></input>
                         <input type="submit" value="Upload Image" name="submit"></input>
                     </form >
                     
-                </div>
+                </div></div>):(null)}
             </div>
         )
     }
