@@ -109,7 +109,7 @@ const startListening = () => {
   require('./socket')(io)
 }
 
-const syncDb = () => db.sync({force: true}).then(() => {
+const syncDb = () => db.sync({force: false}).then(() => {
   console.log("database sync complete!")
 })
 

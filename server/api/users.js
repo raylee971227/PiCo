@@ -97,9 +97,10 @@ router.put('/:id', async (req, res, next) => {
   }
 })
 
-router.post("/:id", upload.single('profilePic'), (req, res, next) => {
+router.post("/:id", upload.single('photo'), (req, res, next) => {
+  console.log('router hit!')
   if(!req.file) return next();
-  const gcsname = req.params.userName + '-' + req.file.originalname;
+  const gcsname = req.params.id + '-' + req.file.originalname;
   const blob = bucket.file(gcsname);
   const stream = blob.createWriteStream({
     metadata: {
@@ -127,11 +128,9 @@ router.post("/:id", upload.single('profilePic'), (req, res, next) => {
     where: {
       id: req.params.id
     }
-  }).then(result => {
-      console.log(result);
-      res.status(201).json({
-        message: "Upload profile picture successfully"
-      });
+  }).then(() => {
+      // console.log(result);
+      res.status(201).redirect('/updateuser')
     })
     .catch(err => {
       console.log(err);

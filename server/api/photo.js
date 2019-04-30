@@ -1,4 +1,5 @@
 const Photo = require('../db/models/photos')
+const User = require('../db/models/user')
 const {Storage} = require('@google-cloud/storage');
 const multer = require('multer')
 const router = require('express').Router()
@@ -121,6 +122,48 @@ router.post("/:id/:userId", upload.array('photo'), (req, res, next) => {
       });
   })
 });
+
+// router.post("/profilephoto/:id", upload.single('photo'), (req, res, next) => {
+//   if(!req.file) return next();
+//   const gcsname = req.file.originalname;
+//   const blob = bucket.file(gcsname);
+//   const stream = blob.createWriteStream({
+//     metadata: {
+//       contentType: req.file.mimetype
+//     }
+//   });
+
+//   stream.on('error', (err) => {
+//     req.file.cloudStorageError = err;
+//     next(err);
+//   });
+
+//   stream.on('finish', () => {
+//     req.file.cloudStorageObject = gcsname;
+//     req.file.cloudStoragePublicUrl = getPublicUrl(gcsname);
+//     next();
+//   });
+
+//   stream.end(req.file.buffer);
+//   const path = 'https://storage.googleapis.com/'+ bucketName+ '/' + gcsname;
+//   blob.makePublic().then(() => {
+//     res.status(200).send('Success!\n Image uploaded to:' + path);
+//   });
+//   // Photo.create({albumId: req.body.albumId,photoPath:path})
+//   //   .then(result => {
+//   //     console.log(result);
+//   //     res.status(201).json({
+//   //       message: "upload photo successfully"
+//   //     });
+//   //   })
+//   //   .catch(err => {
+//   //     console.log(err);
+//   //     res.status(500).json({
+//   //       error: err
+//   //     });
+//   //   });
+//   User.
+// });
 
 
 /**
