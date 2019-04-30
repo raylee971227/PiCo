@@ -52,13 +52,13 @@ export const createNewAlbum = (albumInfo) => async dispatch => {
 export const fetchUserAlbums = userId => async dispatch => {
   let res;
   try {
-    console.log(userId)
+
     res = await axios.get('/api/albums');
     const albums = res.data
     const userAlbums = albums.filter((album) => {
       return (album.owner == userId)
     })
-    console.log(typeof userAlbums)
+
     dispatch(getAlbum(userAlbums))
   } catch (error) {
     console.log('Problem fetching albums from user # ' + userId );

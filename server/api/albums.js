@@ -135,7 +135,7 @@ router.post("/:albumName", upload.single('thumbnail'), (req, res, next) => {
       albumName: req.params.albumName
     }
   }).then(result => {
-    console.log(result);
+    // console.log(result);
     res.status(201).json({
       message: "Upload thumbnail successfully"
     });

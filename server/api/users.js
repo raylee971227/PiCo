@@ -98,7 +98,6 @@ router.put('/:id', async (req, res, next) => {
 })
 
 router.post("/:id", upload.single('photo'), (req, res, next) => {
-  console.log('router hit!')
   if(!req.file) return next();
   const gcsname = req.params.id + '-' + req.file.originalname;
   const blob = bucket.file(gcsname);

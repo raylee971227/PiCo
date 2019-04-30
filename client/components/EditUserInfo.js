@@ -38,9 +38,7 @@ class EditUserInfo extends Component {
   }
   onUpload(evt) {
     evt.preventDefault()
-    console.log('upload nigga')
     document.getElementById("profilePhotoUpload").action = "/api/users/" + this.props.user.id 
-    console.log(document.getElementById('profilePhotoUpload').action)
   } 
 
   render() {
