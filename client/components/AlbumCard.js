@@ -4,10 +4,8 @@ const AlbumCard = props => {
   const {album} = props;
   return(
     <div>
-      
-      <a>Name of the Album !{album.name} </a> !
-    
-      
+      <img src={album.thumbnail} />
+      <h5>{album.albumName}</h5>    
     </div>
   )
 }
