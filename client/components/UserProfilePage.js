@@ -4,6 +4,7 @@ import {fetchSingleUser} from '../store/user';
 import {UserCard} from './';
 import {Link} from 'react-router-dom'
 import "../../public/style.css"
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; 
 
 
 
@@ -14,12 +15,17 @@ class UserProfilePage extends Component {
 
   render() {
     return (  
-      <div>
-            
-            Welcome To Your Page
-            <UserCard user={this.props.user} />
-            <Link  className="defaultbutton" id="navbutton" to="/updateuser">Edit Info</Link>
-      </div>
+      
+            <div>
+  
+                      Welcome To Your Page
+    
+                       <UserCard user={this.props.user} />
+
+                      <Link  className="defaultbutton" id="navbutton" to="/updateuser">Edit Info</Link>
+                  
+            </div>
+      
     )  
   }
 }

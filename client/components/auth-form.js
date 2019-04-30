@@ -3,7 +3,6 @@ import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
 import "../../public/style.css"
-
 /**
  * COMPONENT
  */
@@ -11,27 +10,27 @@ const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} name={name}>
-        <div>
-          <label htmlFor="email">
-            <small>Email</small>
-          </label>
-          <input name="email" type="text" />
-        </div>
-        <div>
-          <label htmlFor="password">
-            <small>Password</small>
-          </label>
-          <input name="password" type="password" />
-        </div>
-        <div>
-          <button className="defaultbutton"  type="submit">{displayName}</button>
-        </div>
-        {error && error.response && <div> {error.response.data} </div>}
-      </form>
-      <a href="/auth/google">{displayName} with Google</a>
-    </div>
+   
+          <div className="authform">
+            <form  onSubmit={handleSubmit} name={name}>
+              <div>
+              
+                <input  className="InputBar" className="AuthBar"  name="email" type="text" placeholder="Email" />
+              </div>
+              <div>
+            
+                <input  className="InputBar" className="AuthBar" name="password" type="password" placeholder="Password" />
+              </div>
+              <div>
+                <button   id="AuthButton" className="defaultbutton"  type="submit">{displayName}</button>
+              </div>
+              {error && error.response && <div> {error.response.data} </div>}
+            </form>
+            <hr></hr>
+            <a href="/auth/google">{displayName} with Google</a>
+
+       </div>
+     
   )
 }
 
