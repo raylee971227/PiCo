@@ -10,8 +10,8 @@ class UploadAlbumPage extends Component {
             <div>
                 <h3> Upload your Albums here!</h3>
                 <div>
-                    <form action="/multer/upload" method="post" encType="multipart/form-data">
-                        <input type="file" name="file"></input>
+                    <form action="/api/photo" method="post" encType="multipart/form-data">
+                        <input type="file" name="photo" multiple></input>
                         <input type="submit" value="Upload Image" name="submit"></input>
                     </form>
                     
