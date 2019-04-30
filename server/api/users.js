@@ -2,6 +2,7 @@ const router = require('express').Router()
 const {User} = require('../db/models')
 const {Storage} = require('@google-cloud/storage');
 const multer = require('multer')
+const path = require('path')
 module.exports = router
 
 const gcs = new Storage({
@@ -83,58 +84,73 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
-router.put('/:id', async (req, res, next) => {
-  try {
+// router.put('/:id', async (req, res, next) => {
+//   try {
+//     const edit = req.body;
+//     const update = await User.update(edit, {
+//       where: {
+//         id: req.params.id
+//       }
+//     })
+//     res.json(update);
+//   } catch (err) {
+//     next(err);
+//   }
+// })
+
+router.put("/:id", upload.single('photo'), (req, res, next) => {
+  if(!req.file) {
     const edit = req.body;
-    const update = await User.update(edit, {
+    User.update(edit, {
       where: {
         id: req.params.id
       }
+    }).then(() => {
+      res.json(update);
     })
-    res.json(update);
-  } catch (err) {
-    next(err);
-  }
-})
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({
+          error: err
+        });
+      });
+  } else {
+    const gcsname = req.params.id + '-' + req.file.originalname;
+    const blob = bucket.file(gcsname);
+    const stream = blob.createWriteStream({
+      metadata: {
+        contentType: req.file.mimetype
+      }
+    });
 
-router.post("/:id", upload.single('photo'), (req, res, next) => {
-  if(!req.file) return next();
-  const gcsname = req.params.id + '-' + req.file.originalname;
-  const blob = bucket.file(gcsname);
-  const stream = blob.createWriteStream({
-    metadata: {
-      contentType: req.file.mimetype
-    }
-  });
+    stream.on('error', (err) => {
+      req.file.cloudStorageError = err;
+      next(err);
+    });
 
-  stream.on('error', (err) => {
-    req.file.cloudStorageError = err;
-    next(err);
-  });
+    stream.on('finish', () => {
+      req.file.cloudStorageObject = gcsname;
+      req.file.cloudStoragePublicUrl = getPublicUrl(gcsname);
+      next();
+    });
 
-  stream.on('finish', () => {
-    req.file.cloudStorageObject = gcsname;
-    req.file.cloudStoragePublicUrl = getPublicUrl(gcsname);
-    next();
-  });
-
-  stream.end(req.file.buffer);
-  const path = 'https://storage.googleapis.com/'+ bucketName+ '/' + gcsname;
-  blob.makePublic().then(() => {
-    res.status(200).send('Success!\n profilePic uploaded to:' + path);
-  });
-  User.update({profilePicture: path}, {
-    where: {
-      id: req.params.id
-    }
-  }).then(() => {
-      // console.log(result);
+    stream.end(req.file.buffer);
+    const path = 'https://storage.googleapis.com/'+ bucketName+ '/' + gcsname;
+    blob.makePublic().then(() => {
+      res.status(200).send('Success!\n profilePic uploaded to:' + path);
+    });
+    User.update({profilePicture: path}, {
+      where: {
+        id: req.params.id
+      }
+    }).then(() => {
       res.status(201).redirect('/updateuser')
     })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json({
-        error: err
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({
+          error: err
+        });
       });
-    });
+  }
 });
