@@ -43,7 +43,7 @@ class Navbar extends Component {
           <h1 className="defaultbutton" id ="Logo" href="/#" onClick={this.handlePiCo}>PiCo</h1>
 
           {this.props.isLoggedIn ? (
-            <div className="navrack">
+            <div className="navrack" id="loggedin">
               {/* The navbar will show these links after you log in */}
               <Link className="defaultbutton" id="navbutton" to="/home">Home</Link>
               <a className="defaultbutton" id="navbutton" onClick={this.handleProfile}>My Profile</a>
@@ -62,7 +62,7 @@ class Navbar extends Component {
             </form>
             </div>
           ) : (
-              <div className="navrack">
+              <div className="navrack" >
                 {/* The navbar will show these links before you log in */}
                 <Link to="/login" className="defaultbutton" id="navbutton" className="defaultbutton">Login</Link>
                 <Link to="/signup" className="defaultbutton" id="navbutton" className="defaultbutton">Sign Up</Link>

@@ -14,10 +14,10 @@ const AuthForm = props => {
           <div className="description">
               <img id="descimg" src="https://i.imgur.com/FfqPmEu.png"></img>
               <hr></hr>
-              <p>
-              PICO
 
-              Minyoung Na / Ray Lee / Mrigank Saksena / Iris Huang  <br/>
+              <h2> Minyoung Na / Ray Lee / Mrigank Saksena / Iris Huang </h2> <br/>
+              <p>
+
               Boilermaker <br/>
               Good things come in pairs <br/>
               Looking to mix up a backend with express/sequelize and a frontend with react/redux? That's boilermaker! <br/>

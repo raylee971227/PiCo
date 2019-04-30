@@ -47,7 +47,7 @@ body {
     background-color:whitesmoke;
     #page{
       height:100%;
-      background-image:url("https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+      background-color:#FFEBE4;
       background-repeat:none;
       background-size:cover;
 
@@ -88,7 +88,8 @@ body {
             width: 65%;
             height: 50%;
             margin-top: 4.7%;
-            margin-left: 23%;
+            margin-left: 15%;
+            text-align: right;
             position: absolute;
             #Search{
               z-index: 101;
@@ -98,6 +99,7 @@ body {
               height: 50%;
               margin: 0% 3%;
               position: absolute;
+              text-align:left;
 
               #searchbutton{
                 font-weight: bold;
@@ -121,6 +123,10 @@ body {
               color:  #478CBE;
               border-bottom: 4px solid #478CBE;
             }
+          }
+
+          #loggedin{
+            margin-left: -8%;
           }
         }
       }

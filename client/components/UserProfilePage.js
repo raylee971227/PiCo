@@ -18,12 +18,17 @@ class UserProfilePage extends Component {
   render() {
     const arr = Object.values(this.props.album)
     return (  
-      <div>
+      <div id="profilepage">
             
             Welcome To Your Page
-            <UserCard user={this.props.user} />
-            <Link to="/updateuser">Edit Info</Link>
+            <div id="usercard">
+               <UserCard user={this.props.user} />
+               <Link to="/updateuser">Edit Info</Link>
+            </div>
+
+            <div id="useralbum">
             <AlbumContainer albums={arr} />
+            </div>
       </div>
     )  
   }

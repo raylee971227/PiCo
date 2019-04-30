@@ -31,7 +31,7 @@ body {
     background-color: whitesmoke; }
     body #app #page {
       height: 100%;
-      background-image: url("https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+      background-color: #FFEBE4;
       background-repeat: none;
       background-size: cover; }
       body #app #page .defaultbutton {
@@ -65,7 +65,8 @@ body {
             width: 65%;
             height: 50%;
             margin-top: 4.7%;
-            margin-left: 23%;
+            margin-left: 15%;
+            text-align: right;
             position: absolute; }
             body #app #page #Header #Navbar .navrack #Search {
               z-index: 101;
@@ -74,7 +75,8 @@ body {
               width: 31%;
               height: 50%;
               margin: 0% 3%;
-              position: absolute; }
+              position: absolute;
+              text-align: left; }
               body #app #page #Header #Navbar .navrack #Search #searchbutton {
                 font-weight: bold;
                 font-size: 2.3vh;
@@ -91,6 +93,8 @@ body {
             body #app #page #Header #Navbar .navrack #navbutton:hover {
               color: #478CBE;
               border-bottom: 4px solid #478CBE; }
+          body #app #page #Header #Navbar #loggedin {
+            margin-left: -8%; }
       body #app #page #main {
         position: absolute;
         top: 21%;
