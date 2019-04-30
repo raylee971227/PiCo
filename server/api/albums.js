@@ -116,3 +116,33 @@ router.post("/:albumName", upload.single('thumbnail'), (req, res, next) => {
     });
 })
 
+router.put('/:id', async (req, res, next) => {
+  try {
+    const edit = req.body;
+    const update = await Album.update(edit, {
+      where: {
+        albumName: req.params.id
+      }
+    })
+    res.json(update);
+  } catch (err) {
+    next(err);
+  }
+})
+
+// Only delete the picture from the db. Photo still remains on the cloud
+router.delete('/:id', async (req, res, next) => {
+  try {
+    var id = req.params.id;
+    Album.query('DELETE FROM users WHERE id = $1', [id], (error, results) => {
+      if (error) {
+        throw error
+      }
+      response.status(200).send(`User deleted with ID: ${id}`)
+    })
+    //Album.destroy({where: {albumName: req.params.id}})
+  } catch (err) {
+    next(err);
+  }
+})
+

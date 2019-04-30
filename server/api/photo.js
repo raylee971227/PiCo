@@ -147,7 +147,14 @@ router.get('/:photoId', async (req, res, next) => {
 // Only delete the picture from the db. Photo still remains on the cloud
 router.delete('/:id', async (req, res, next) => {
   try {
-    Photo.destroy({where: {photoId: req.params.id}})
+    var id = req.params.id;
+    Photo.query('DELETE FROM users WHERE id = $1', [id], (error, results) => {
+      if (error) {
+        throw error
+      }
+      response.status(200).send(`User deleted with ID: ${id}`)
+    })
+    //Photo.destroy({where: {photoId: req.params.id}})
   } catch (err) {
     next(err);
   }
