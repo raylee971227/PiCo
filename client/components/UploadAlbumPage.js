@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {me} from '../store/user';
+import history from '../history';
+import "../../public/style.css"
 import {createNewAlbum, fetchAlbumByName} from '../store/album';
 
 class UploadAlbumPage extends Component {
@@ -73,8 +75,8 @@ class UploadAlbumPage extends Component {
                 {(this.state.uploadPhoto)?(<div><h3>Choose your images!</h3>
                 <div>
                     <form id="photoUplaod" action="/api/photo/" method="post" encType="multipart/form-data">
-                        <input type="file" name="photo" multiple onChange={this.onUpload}></input>
-                        <input type="submit" value="Upload Image" name="submit"></input>
+                        <input className="defaultbutton" id="navbutton" type="file" name="photo" multiple onChange={this.onUpload}></input>
+                        <input className="defaultbutton" id="navbutton" type="submit" value="Upload Image" name="submit"></input>
                     </form >
                     
                 </div></div>):(null)}

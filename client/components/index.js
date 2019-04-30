@@ -13,4 +13,3 @@ export {default as AlbumCard} from './AlbumCard'
 export {default as UploadAlbumPage} from './UploadAlbumPage'
 export {default as UserProfileViewer} from './UserProfileViewer'
 export {default as AlbumContainer} from './AlbumContainer'
-

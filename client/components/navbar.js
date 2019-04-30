@@ -7,9 +7,6 @@ import {fetchUserFromID} from '../store/targetuser';
 import history from '../history'
 import "../../public/style.css"
 
-
-
-
 class Navbar extends Component {
   constructor() {
     super()
@@ -41,34 +38,37 @@ class Navbar extends Component {
 
   render() {
     return (
-      <div>
-        <h1 href="/#" onClick={this.handlePiCo}>PiCo</h1>
+      <div id="Header">
         <nav id="Navbar">
+          <h1 className="defaultbutton" id ="Logo" href="/#" onClick={this.handlePiCo}>PiCo</h1>
+
           {this.props.isLoggedIn ? (
-            <div>
+            <div className="navrack">
               {/* The navbar will show these links after you log in */}
-              <Link to="/home">Home</Link>
-              <a onClick={this.handleProfile}> My Profile </a>
-              <a onClick={this.props.handleClick}> Logout </a>
-              <Link to="/upload"> Upload Album </Link>
-            <form id="Search" onSubmit={this.handleSearch}>
+              <Link className="defaultbutton" id="navbutton" to="/home">Home</Link>
+              <a className="defaultbutton" id="navbutton" onClick={this.handleProfile}>My Profile</a>
+              <Link className="defaultbutton" id="navbutton" to="/upload">Upload Album</Link>
+              <a className="defaultbutton" id="navbutton" onClick={this.props.handleClick}>
+                Logout
+              </a>
+              
+            <form id="Search"  onSubmit={this.handleSearch}>
                   <input 
-                    id="SearchBar"
+                    className="InputBar"
                     type="text"
                     placeholder="Type Something !"
                     />
-                <button id="SearchButton" type="submit"> Search </button>
+                <button className="defaultbutton" id="searchbutton" type="submit">  Search !</button>
             </form>
             </div>
           ) : (
-              <div>
+              <div className="navrack">
                 {/* The navbar will show these links before you log in */}
-                <Link to="/login">Login</Link>
-                <Link to="/signup">Sign Up</Link>
+                <Link to="/login" className="defaultbutton" id="navbutton" className="defaultbutton">Login</Link>
+                <Link to="/signup" className="defaultbutton" id="navbutton" className="defaultbutton">Sign Up</Link>
               </div>
             )}
         </nav>
-        <hr />
       </div>
     )
   }

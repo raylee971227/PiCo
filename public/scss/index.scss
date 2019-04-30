@@ -6,53 +6,204 @@
 // See an example import below
 // @import './component.scss';
 
-body {
-  font-family: sans-serif;
+//Reset Style
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, caption {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  vertical-align: baseline;
+  background: transparent;
+}
 
+@font-face {
+  font-family: 'expressway';
+  src: url('C:\Users\Minyoung\Pico\PiCo\public\expressway.ttf');
+}
+
+html{
+  margin:0;
+  padding:0;
+  height:100%;
+  overflow:hidden;
+}
+body {
+    margin:0;
+    padding:0;
+    height:100%;
+    width:100%;
+    
   a {
     text-decoration: none;
   }
-
-  label {
-    display: block;
-  }
-
   nav a {
     display: inline;
     margin: 0;
   }
+  
 
-  form div {
-    margin: 1em;
-    display: inline-block;
+  #app{
+    height:100%;
+    background-color:whitesmoke;
+    #page{
+      height:100%;
+      background-image:url("https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+      background-repeat:none;
+      background-size:cover;
+
+      .defaultbutton{
+        border: none;
+        font-family: expressway, sans-serif;
+        color:  #2C6A97;
+        text-decoration: none;
+        cursor:pointer;
+        transition: color, border-bottom .2s;
+        font-size: 2.3vh;
+      }
+      
+      #Header{
+        width:100%;
+        height: 16%;
+        position:absolute;
+        background: rgb(247,129,84);
+        background: linear-gradient(0deg, rgba(247,129,84,1) 5%, rgba(244,170,141,1) 100%, rgba(243,189,168,1) 100%, rgba(241,219,210,1) 100%, rgba(240,240,240,1) 100%);
+
+        #Navbar{
+          height:100%;
+          width: 76%;
+          margin: 0% 10%;
+
+          #Logo{
+            font-size:11vh;
+            color:#2C6A97;
+            font-family: expressway rg, sans-serif;
+            height: 100%;
+            position:absolute;
+            z-index:100;
+            cursor:pointer;
+          }
+          
+          .navrack{
+            display: inline;
+            width: 65%;
+            height: 50%;
+            margin-top: 4.7%;
+            margin-left: 23%;
+            position: absolute;
+            #Search{
+              z-index: 101;
+              display: inline;
+              display: inline;
+              width: 31%;
+              height: 50%;
+              margin: 0% 3%;
+              position: absolute;
+
+              #searchbutton{
+                font-weight: bold;
+                font-size: 2.3vh;
+                padding: 1.2% 3.6%;
+                margin: 0% 6%;
+                width: 34%;
+                position: absolute;
+                border-radius: 4px;
+                border-style: none;
+              }              
+            }
+
+            #navbutton{ 
+              font-weight: bold;
+              font-size: 2.3vh;
+              padding: 0.7% 1.4%;
+            }
+
+            #navbutton:hover{
+              color:  #478CBE;
+              border-bottom: 4px solid #478CBE;
+            }
+          }
+        }
+      }
+
+      #main{
+        position: absolute;
+        top: 21%;
+        margin: 0% 10%;
+        height: 74%;
+        width: 80%;
+        z-index:100;
+        .description{
+          background-color: whitesmoke;
+          position: absolute;
+          width: 63%;
+          height: 92%;
+          padding: 20px;
+          border-radius: 4px;
+          margin: 0% 3%;
+          overflow: scroll;
+
+          #descimg{   
+            margin: 0% 24.5%;
+            width: 51%;
+          }
+        }
+        .authform{
+          background-color: whitesmoke;
+          border-radius: 23px;
+          position: absolute;
+          right: 0;
+          height: 50%;
+          width: 26%;
+          padding: 1%;
+
+          .AuthBar{
+            padding: 3% 4.7%;
+            width: 78%;
+            margin: 3% 5%;
+            border-style: none;
+            border-radius: 8px;
+          }
+
+          #AuthButton{
+            margin: 2% 6.5%;
+            font-size: 2.3vh;
+            /* text-align: center; */
+            padding: 2% 4%;
+          }
+        }
+      }
+    }
   }
 }
 
-#Navbar{
-  top: 0%;
-  width: 100%;
-  left: 0;
-  z-index: 100;
-}
+.InputBar{
+  width: 71%;
 
-#Search{
-  width:100%;
-  position:relative;
-}
-
-#SearchBar{
-  width: 80%;
-  margin: 1%;
-  padding: 1%;
+  padding: 2% 3.6%;
+  border-radius: 10px;
+  border-style: none;
   position: relative;
+
+  
 }
 
-#SearchButton{
-  width:10%;
-  position:relative;
+
+
+/* 
+Animation between componenets
+*/
+
+::-webkit-scrollbar {
+  width: 8px;
+  height:0;
+  
+
 }
 
-#Search a{
-  display: inline;
-  margin: 0em;
+
+::-webkit-scrollbar-thumb {
+ 
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.479); 
 }
+
