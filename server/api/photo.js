@@ -82,45 +82,48 @@ router.get('/', async(req, res, next) => {
  * API Endpoint: http://localhost:8080/api/photo
  * upload a picture to db
  */
-router.post("/", upload.single('photo'), (req, res, next) => {
-  if(!req.file) return next();
-  const gcsname = req.params.albumId + '-' + req.file.originalname;
-  const blob = bucket.file(gcsname);
-  const stream = blob.createWriteStream({
-    metadata: {
-      contentType: req.file.mimetype
-    }
-  });
-
-  stream.on('error', (err) => {
-    req.file.cloudStorageError = err;
-    next(err);
-  });
-
-  stream.on('finish', () => {
-    req.file.cloudStorageObject = gcsname;
-    req.file.cloudStoragePublicUrl = getPublicUrl(gcsname);
-    next();
-  });
-
-  stream.end(req.file.buffer);
-  const path = 'https://storage.googleapis.com/'+ bucketName+ '/' + gcsname;
-  blob.makePublic().then(() => {
-    res.status(200).send('Success!\n Image uploaded to:' + path);
-  });
-  Photo.create({albumId: req.body.albumId,photoPath:path})
-    .then(result => {
-      console.log(result);
-      res.status(201).json({
-        message: "upload photo successfully"
-      });
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json({
-        error: err
-      });
+router.post("/", upload.array('photo'), (req, res, next) => {
+  if(!req.files) return next();
+  req.files.forEach((file) => {
+    const gcsname = req.params.albumId + '-' + file.originalname;
+    const blob = bucket.file(gcsname);
+    const stream = blob.createWriteStream({
+      metadata: {
+        contentType: file.mimetype
+      }
     });
+
+    stream.on('error', (err) => {
+      file.cloudStorageError = err;
+      next(err);
+    });
+
+    stream.on('finish', () => {
+      file.cloudStorageObject = gcsname;
+      file.cloudStoragePublicUrl = getPublicUrl(gcsname);
+      next();
+    });
+
+    stream.end(file.buffer);
+    const path = 'https://storage.googleapis.com/'+ bucketName+ '/' + gcsname;
+    blob.makePublic().then(() => {
+      res.status(200).send('Success!\n Image uploaded to:' + path);
+    });
+    Photo.create({albumId: req.body.albumId,photoPath:path})
+      .then(result => {
+        console.log(result);
+        res.status(201).json({
+          message: "upload photo successfully"
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({
+          error: err
+        });
+      });
+  })
+
 });
 
 

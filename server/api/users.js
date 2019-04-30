@@ -123,8 +123,11 @@ router.post("/:id", upload.single('profilePic'), (req, res, next) => {
   blob.makePublic().then(() => {
     res.status(200).send('Success!\n profilePic uploaded to:' + path);
   });
-  User.create({userName: req.body.userName, email: req.body.email, profilePicture:req.body.path})
-    .then(result => {
+  User.update({profilePicture: path}, {
+    where: {
+      id: req.params.id
+    }
+  }).then(result => {
       console.log(result);
       res.status(201).json({
         message: "Upload profile picture successfully"

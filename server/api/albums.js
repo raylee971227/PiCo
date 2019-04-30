@@ -49,46 +49,63 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.post("/", upload.single('thumbnail'), (req, res, next) => {
-  if(req.file){
-    const gcsname = req.body.albumName + '-' + req.file.originalname;
-    const blob = bucket.file(gcsname);
-    const stream = blob.createWriteStream({
-      metadata: {
-        contentType: req.file.mimetype
+/**
+ * API Endpoint: http://localhost:8080/api/albums
+ *  POST: create a new album
+ */
+router.route('/')
+  .post(function (req, res) {
+    var album = new Album();
+    if (req.body.albumName == undefined) {
+      album.albumName = album.albumId;
+    }
+    album.save(function (err, data) {
+      if (err) {
+        res.send(err);
       }
+      res.send(data);
     });
+  });
 
-    stream.on('error', (err) => {
-      req.file.cloudStorageError = err;
-      next(err);
-    });
 
-    stream.on('finish', () => {
-      req.file.cloudStorageObject = gcsname;
-      req.file.cloudStoragePublicUrl = getPublicUrl(gcsname);
-      next();
-    });
+/**
+ *  API Endpoint: http://localhost:8080/api/:albumId
+ *  POST: upload a thumbnail picture
+ */
+router.post("/:albumName", upload.single('thumbnail'), (req, res, next) => {
+  if(!req.file) return next()
+  const gcsname = req.body.albumName + '-' + req.file.originalname;
+  const blob = bucket.file(gcsname);
+  const stream = blob.createWriteStream({
+    metadata: {
+      contentType: req.file.mimetype
+    }
+  });
 
-    stream.end(req.file.buffer);
-    const path = 'https://storage.googleapis.com/'+ bucketName+ '/' + gcsname;
-    blob.makePublic().then(() => {
-      res.status(200).send('Success!\n profilePic uploaded to:' + path);
-    });
-  }
-  console.log(req.body)
-  var newAlbum = Album.create();
-  if (req.body.albumName == null) {
-    newAlbum.albumName = newAlbum.albumId;
-  } else {
-    newAlbum.albumName = req.body.albumName;
-  }
-  newAlbum.thumbnail = req.body.path;
-  newAlbum.create()
-    .then(result => {
+  stream.on('error', (err) => {
+    req.file.cloudStorageError = err;
+    next(err);
+  });
+
+  stream.on('finish', () => {
+    req.file.cloudStorageObject = gcsname;
+    req.file.cloudStoragePublicUrl = getPublicUrl(gcsname);
+    next();
+  });
+
+  stream.end(req.file.buffer);
+  const path = 'https://storage.googleapis.com/'+ bucketName+ '/' + gcsname;
+  blob.makePublic().then(() => {
+    res.status(200).send('Success!\n profilePic uploaded to:' + path);
+  });
+  Album.update({thumbnail: path}, {
+    where: {
+      albumName: req.params.albumName
+    }
+  }).then(result => {
     console.log(result);
     res.status(201).json({
-      message: "Created a new album"
+      message: "Upload thumbnail successfully"
     });
   })
     .catch(err => {
@@ -98,3 +115,4 @@ router.post("/", upload.single('thumbnail'), (req, res, next) => {
       });
     });
 })
+

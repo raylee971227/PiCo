@@ -11,7 +11,7 @@ class UploadAlbumPage extends Component {
                 <h3> Upload your Albums here!</h3>
                 <div>
                     <form action="/api/photo" method="post" encType="multipart/form-data">
-                        <input type="file" name="photo"></input>
+                        <input type="file" name="photo" multiple></input>
                         <input type="submit" value="Upload Image" name="submit"></input>
                     </form>
                     
