@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {fetchSingleUser} from '../store/user';
 import {UserCard} from './';
 import {Link} from 'react-router-dom'
+import "../../public/style.css"
 
 
 
@@ -17,7 +18,7 @@ class UserProfilePage extends Component {
             
             Welcome To Your Page
             <UserCard user={this.props.user} />
-            <Link to="/updateuser">Edit Info</Link>
+            <Link  className="defaultbutton" id="navbutton" to="/updateuser">Edit Info</Link>
       </div>
     )  
   }

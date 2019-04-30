@@ -56,14 +56,17 @@ body {
         font-family: expressway, sans-serif;
         color:  #2C6A97;
         text-decoration: none;
+        cursor:pointer;
         transition: color, border-bottom .2s;
+        font-size: 2.3vh;
+       
       }
       
       #Header{
         
       
         width:100%;
-        height: 14%;
+        height: 16%;
         position:absolute;
 
         background: rgb(247,129,84);
@@ -78,7 +81,7 @@ body {
           
 
           #Logo{
-            font-size:10vh;
+            font-size:11vh;
             color:#2C6A97;
             font-family: expressway rg, sans-serif;
             height: 100%;
@@ -91,19 +94,46 @@ body {
             text-align: right;
             height: 100%;
             padding: 5.3% 0%;
+
+            #Search{
+              width: 100%;
+              margin: .8% 0;
+              position: relative;
+              z-index: 101;
+
+              #SearchBar{
+                width: 80%;
+                margin: 1%;
+                padding: 1%;
+                position: relative;
+              }
+
+              #searchbutton{
+                font-weight: bold;
+                font-size: 2.3vh;
+                padding: 1.2% 2.6%;
+                margin:1%;
+              }              
+            }
+
+            #navbutton{ 
+              font-weight: bold;
+              font-size: 2.3vh;
+              padding: 0.7% 2.6%;
+  
+            }
+
+            
+
+            #navbutton:hover{
+              color:  #478CBE;
+              border-bottom: 4px solid #478CBE;
+            }
           }
 
-          #navbutton{ 
-            font-weight: bold;
-            font-size: 2.7vh;
-            padding: 0.7% 2.6%;
-
-          }
+          
          
-          #navbutton:hover{
-            color:  #478CBE;
-            border-bottom: 4px solid #478CBE;
-          }
+          
         }
 
         
@@ -111,29 +141,17 @@ body {
 
       #main{
         position: absolute;
-        top: 14%;
+        top: 23%;
         margin: 0% 10%;
-        height: 86%;
+        height: 74%;
         width: 80%;
+        z-index:100;
       }
     }
   }
 }
 
-#Search{
-  width:100%;
-  position:relative;
-}
 
-#SearchBar{
-  width: 80%;
-  margin: 1%;
-  padding: 1%;
-  position: relative;
-}
 
-#SearchButton{
-  width:10%;
-  position:relative;
-}
+
 

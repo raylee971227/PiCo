@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {me} from '../store/user';
 import history from '../history';
+import "../../public/style.css"
 
 class UploadAlbumPage extends Component {
     
@@ -11,8 +12,8 @@ class UploadAlbumPage extends Component {
                 <h3> Upload your Albums here!</h3>
                 <div>
                     <form action="/multer/upload" method="post" encType="multipart/form-data">
-                        <input type="file" name="file"></input>
-                        <input type="submit" value="Upload Image" name="submit"></input>
+                        <input className="defaultbutton" id="navbutton" type="file" name="file"></input>
+                        <input className="defaultbutton" id="navbutton" type="submit" value="Upload Image" name="submit"></input>
                     </form>
                     
                 </div>

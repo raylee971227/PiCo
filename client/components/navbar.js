@@ -45,19 +45,19 @@ class Navbar extends Component {
           {this.props.isLoggedIn ? (
             <div className="navrack">
               {/* The navbar will show these links after you log in */}
-              <Link to="/home">Home</Link>
-              <a onClick={this.handleProfile}>My Profile</a>
-              <a onClick={this.props.handleClick}>
+              <Link className="defaultbutton" id="navbutton" to="/home">Home</Link>
+              <a className="defaultbutton" id="navbutton" onClick={this.handleProfile}>My Profile</a>
+              <a className="defaultbutton" id="navbutton" onClick={this.props.handleClick}>
                 Logout
               </a>
-              <Link to="/upload">Upload Album</Link>
+              <Link className="defaultbutton" id="navbutton" to="/upload">Upload Album</Link>
             <form id="Search"  onSubmit={this.handleSearch}>
                   <input 
                     id="SearchBar"
                     type="text"
                     placeholder="Type Something !"
                     />
-                <button className="defaultbutton" id="navbutton" type="submit">  Search !</button>
+                <button className="defaultbutton" id="searchbutton" type="submit">  Search !</button>
             </form>
             <p>logged in as {this.props.user.userName}</p>
             </div>
