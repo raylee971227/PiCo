@@ -32,6 +32,7 @@ class UserProfilePage extends Component {
             </div>
 
             <div id="useralbum">
+            <h3>{this.props.user.firstName}'s Albums</h3>
             <AlbumContainer albums={arr} />
             </div>
       </div>
