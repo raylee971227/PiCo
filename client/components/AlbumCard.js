@@ -8,7 +8,6 @@ class AlbumCard extends Component {
   constructor(props) {
     super(props)
     this.onClick = this.onClick.bind(this)
-
   }
   onClick() {
     history.push(`/album/${this.props.album.albumId}`);
@@ -17,15 +16,13 @@ class AlbumCard extends Component {
     const {album} = this.props;
     return(
       <div id="albumcard">
-        
-        <img src={album.thumbnail} onClick={this.onClick}/>
-
-        <div id="albumdetails">
-          <ul>
-            <li><h2 id="albumname">{album.albumName}</h2></li>
-            <h3 id="albumname">{album.description}</h3>
-          </ul>    
-        </div>
+        {(album != null)?(
+        <React.Fragment><img src={album.thumbnail} onClick={this.onClick}/><div id="albumdetails">
+        <ul>
+          <li><h2 id="albumname">{album.albumName}</h2></li>
+          <h3 id="albumname">{album.description}</h3>
+        </ul>    
+        </div></React.Fragment>):(null)}
       </div>
     )
   }
