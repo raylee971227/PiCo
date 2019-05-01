@@ -38,22 +38,22 @@ class EditUserInfo extends Component {
   }
   onUpload(evt) {
     evt.preventDefault()
-    document.getElementById("profilePhotoUpload").action = "/api/users/" + this.props.user.id 
+    document.getElementById("profilePhotoUpload").action = "/api/users/profilephoto/" + this.props.user.id 
   } 
 
   render() {
     return (
       <React.Fragment>
         {(this.props.user.accountSetUp) ? (<h3>Edit Your Information</h3>) : (<h3>Please fill out the required forms (*)</h3>)}
-        <form onSubmit={this.handleSubmit}>
-          <div>
-            <div>
-              <p>Profile Picture</p>
-              <img src={this.props.user.profilePicture} />
+        <p>Profile Picture</p>
+              <img src={this.props.user.profilePicture} width="340" height="340"/>
               <form id="profilePhotoUpload" action="/" method="post" encType="multipart/form-data">
                 <input type="file" name="photo" onChange={this.onUpload}></input>
                 <input type="submit" value="Upload Image" name="submit"></input>
               </form>
+        <form onSubmit={this.handleSubmit}>
+          <div>
+            <div>
               <p>User Name*</p>
               <input onChange={this.handleChange} type="text" name="userName" value={this.state.userName} />
               <p>First Name*</p>
