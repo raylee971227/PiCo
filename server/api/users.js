@@ -105,7 +105,7 @@ router.put("/:id", upload.single('photo'), (req, res, next) => {
       where: {
         id: req.params.id
       }
-    }).then(() => {
+    }).then((update) => {
       res.json(update);
     })
       .catch(err => {

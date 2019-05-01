@@ -12,7 +12,7 @@ import { SearchAlbum } from './'
 
 
 class UserProfilePage extends Component {
-  async componentDidMount() {
+  async componentWillMount() {
     await this.props.fetchUser(this.props.match.params.id);
     await this.props.fetchUserAlbums(this.props.match.params.id);
   }

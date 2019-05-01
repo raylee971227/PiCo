@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {me} from '../store/user';
 import history from '../history';
 import "../../public/style.css"
-import {createNewAlbum, fetchAlbumByName} from '../store/album';
+import {createNewAlbum, fetchAlbumByName, deleteAlbum, fetchUserAlbums} from '../store/album';
 
 class UploadAlbumPage extends Component {
     constructor(props){
@@ -18,6 +18,7 @@ class UploadAlbumPage extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.makeAlbum = this.makeAlbum.bind(this);
         this.onUpload = this.onUpload.bind(this);
+        this.handleBack = this.handleBack.bind(this);
     }
     componentDidMount() {
         this.props.currUser();
@@ -27,12 +28,18 @@ class UploadAlbumPage extends Component {
         this.setState({
           [evt.target.name]: evt.target.value
         })
-      }
+    }
+
+    handleBack(evt) {
+        evt.preventDefault();
+        this.props.delete(this.props.album.albumId);
+        history.push('/home')
+    }
 
     async makeAlbum(evt) {
         evt.preventDefault();
         await this.props.getAlbumByName(this.state.albumName);
-        if(this.props.album.length === 0) {
+        if(!this.props.album[0]) {
             this.props.newAlbum({
                 albumName: this.state.albumName,
                 description: this.state.description,
@@ -76,8 +83,10 @@ class UploadAlbumPage extends Component {
                         <input className="defaultbutton" id="navbutton" type="file" name="photo" multiple onChange={this.onUpload}></input>
                         <input className="defaultbutton" id="navbutton" type="submit" value="Upload Image" name="submit"></input>
                     </form >
-                    
                 </div></div>):(null)}
+                <div>
+                    <button onClick={this.handleBack}>Back</button>
+                </div>
             </div>
         )
     }
@@ -95,12 +104,23 @@ const mapDispatchToProps = dispatch => {
         currUser: () => {
             dispatch(me());
         },
+        updateUserAlbums: (userId) => {
+            dispatch(fetchUserAlbums(userId))
+        },
         newAlbum: (albumInfo) => {
             dispatch(createNewAlbum(albumInfo));
         },
         getAlbumByName: (albumName) => {
             dispatch(fetchAlbumByName(albumName))
-        }
+        },
+        delete: (albumId) => {
+            dispatch(deleteAlbum(albumId))
+        },
+
+        // fetchAlbums: (userId => {
+        //     dispatch(fetchUserAlbums(userId))
+        // })
+       
     }
 }
 
