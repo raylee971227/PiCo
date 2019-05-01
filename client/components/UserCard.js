@@ -11,7 +11,7 @@ const UserCard = props => {
       
       <img id="profileimage" src={user.profilePicture} width= '33%' height="33%"/>
       <div id="profiledetails">
-        <h2 id="profilename">Welcome back ! {user.firstName} {user.lastName}</h2>
+        
         <ul>
           <li>
             <h3> Email : {user.email} </h3>

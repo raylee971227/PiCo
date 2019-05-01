@@ -19,8 +19,12 @@ class UserProfilePage extends Component {
 
   render() {
     const arr = Object.values(this.props.album)
+
     return (  
+      
       <div id="profilepage">
+      
+      <h2 id="profilename">Welcome back ! {this.props.user.firstName} {this.props.user.lastName}</h2>
             <Route path="" component={SearchAlbum} />
             <div id="usercard">
                <UserCard user={this.props.user} />

@@ -13,6 +13,10 @@ class UserHome extends Component {
     if(!this.props.user.accountSetUp) {
       history.push('/updateuser');
     }
+
+    for (let i ; i<10 ;i++){
+      this.props.fetchUserAlbums(i);
+  }
   }
 
   render() {
@@ -24,7 +28,7 @@ class UserHome extends Component {
 
 
         <div id="useralbum">
-            <AlbumContainer albums={arr} />
+            <AlbumContainer albums={arr[0,1]} />
           </div>
       </div>
     )
