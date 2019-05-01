@@ -23,7 +23,7 @@ class PhotoCard extends Component {
         return(
             <div>
                 <div>
-                    <img src={photo.photoPath} height="400" width="250"/>
+                    <img src={photo.photoPath} height="400" width="600"/>
                 </div>
                {(photo.owner == this.props.curUser.id)?(                <div>
                     <button onClick={this.handleDelete}>Delete Photo</button>

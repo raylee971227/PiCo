@@ -5,11 +5,12 @@ import history from '../history'
 /**
  * COMPONENT
  */
-import {fetchUserAlbums} from '../store/album'
-import {UserCard, AlbumContainer} from './';
+import {fetchAllAlbums} from '../store/album'
+import {AlbumContainer} from './';
 
 class UserHome extends Component {
   componentDidMount() {
+    this.props.allAlbums()
     if(!this.props.user.accountSetUp) {
       history.push('/updateuser');
     }
@@ -17,15 +18,14 @@ class UserHome extends Component {
 
   render() {
     const arr = Object.values(this.props.album)
-
     return (
       <div id="homepage">
- 
-
-
         <div id="useralbum">
-            <AlbumContainer albums={arr} />
-          </div>
+
+            <h2>Dashboard</h2>
+            <AlbumContainer albums={arr}/>
+
+      </div>
       </div>
     )
   }
@@ -46,9 +46,9 @@ const mapState = state => {
 }
 const mapDispatch = dispatch => {
   return {
-    fetchalbum: userId => {
-
-      dispatch(fetchUserAlbums(userId))
+    
+    allAlbums: () => {
+      dispatch(fetchAllAlbums())
     }
   }
 }
