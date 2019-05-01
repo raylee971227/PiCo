@@ -49,27 +49,57 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.get('/:albumName_or_id', async (req, res, next) => {
+// router.get('/:albumName_or_id', async (req, res, next) => {
+//   try {
+//     console.log(req.params.albumName_or_id)
+//     if(Number.isInteger(req.params.albumName_or_id)) {
+//       const album = await Album.findAll({
+//         where: {albumId: req.params.albumName_or_id}
+//       })
+//       res.json(album);
+//     }
+//     else {
+//       const album = await Album.findAll({
+//         where: {
+//           albumName: req.params.albumName_or_id
+//         }
+//       })
+//       res.json(album)
+//     }
+//   } catch (error) {
+//     console.log('Could not fetch album');
+//     console.log(error);
+//   }
+// })
+
+router.get('/:id', async (req, res, next) => {
   try {
-    if(Number.isInteger(req.params.albumName_or_id)) {
-      const album = await Album.findAll({
-        where: {albumId: req.params.albumName_or_id}
-      })
-      res.json(album);
-    }
-    else {
+    
       const album = await Album.findAll({
         where: {
-          albumName: req.params.albumName_or_id
+          albumId: req.params.id
         }
       })
-      res.json(album)
-    }
+      res.status(201).json(album);
   } catch (error) {
-    console.log('Could not fetch album');
-    console.log(error);
+    console.log('Could not GET album with id ' + req.params.id);
+    console.log(error)
   }
 })
+
+// router.get('/name/:name', async (req, res, next) => {
+//   try {
+//     const album = Album.findAll({
+//       where: {
+//         albumName: req.params.name
+//       }
+//     })
+//     res.status(201).json(album)
+//   } catch (error) {
+//     console.log('Could not GET album with name ' + req.params.name);
+//     console.log(error)
+//   }
+// })
 
 /**
  * API Endpoint: http://localhost:8080/api/albums
@@ -163,18 +193,28 @@ router.put('/:id', async (req, res, next) => {
 })
 
 // Only delete the picture from the db. Photo still remains on the cloud
-router.delete('/:id', async (req, res, next) => {
+// router.delete('/:id', async (req, res, next) => {
+//   try {
+//     var id = req.params.id;
+//     // Album.query('DELETE FROM users WHERE id = $1', [id], (error, results) => {
+//     //   if (error) {
+//     //     throw error
+//     //   }
+//     //   response.status(200).send(`User deleted with ID: ${id}`)
+//     // })
+//     await Album.destroy({where: {albumId: id}}).then(
+//       res.status(200).send('Album # ' + id + " successfully deleted"));
+//   } catch (err) {
+//     next(err);
+//   }
+// })
+
+router.put('/delete/:id', async (req, res, next) => {
   try {
-    var id = req.params.id;
-    Album.query('DELETE FROM users WHERE id = $1', [id], (error, results) => {
-      if (error) {
-        throw error
-      }
-      response.status(200).send(`User deleted with ID: ${id}`)
-    })
-    //Album.destroy({where: {albumName: req.params.id}})
-  } catch (err) {
-    next(err);
+    Album.destroy({where:{albumId: req.params.id}}) 
+    res.status(200);
+  } catch (error) {
+    res.status(500);
+    console.log("Could not delete album with id # ")
   }
 })
-
