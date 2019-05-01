@@ -47,7 +47,6 @@ class Navbar extends Component {
               {/* The navbar will show these links after you log in */}
               <Link className="defaultbutton" id="navbutton" to="/home">Home</Link>
               <a className="defaultbutton" id="navbutton" onClick={this.handleProfile}>My Profile</a>
-              <Link className="defaultbutton" id="navbutton" to="/upload">Upload Album</Link>
               <a className="defaultbutton" id="navbutton" onClick={this.props.handleClick}>
                 Logout
               </a>

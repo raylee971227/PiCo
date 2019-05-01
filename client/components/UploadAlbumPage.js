@@ -55,7 +55,7 @@ class UploadAlbumPage extends Component {
 
     render() {
         return(
-            <div>
+            <div id="albumupload">
                 <h3>Give your album a title and description!</h3>
                 <div>
                     <form>

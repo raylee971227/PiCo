@@ -105,7 +105,7 @@ body {
                 font-weight: bold;
                 font-size: 2.3vh;
                 padding: 1.2% 3.6%;
-                margin: 0% 6%;
+                margin: -1% 6%;
                 width: 34%;
                 position: absolute;
                 border-radius: 4px;
@@ -133,11 +133,38 @@ body {
 
       #main{
         position: absolute;
-        top: 21%;
+        top: 19%;
         margin: 0% 10%;
-        height: 74%;
+        height: 78%;
         width: 80%;
         z-index:100;
+        overflow:scroll;
+        #profilepage{
+          border-radius:5px;
+          #usercard{
+            border-radius: 22px;
+            padding: 1.5%;
+            /* position: absolute; */
+            width: 55%;
+            background-color: whitesmoke;
+            margin-bottom:2%;
+          }
+
+          #useralbum{
+            border-radius: 22px;
+            padding: 1.5%;
+            background-color: whitesmoke;
+          }
+
+          #albumupload{
+            background-color: whitesmoke;
+            width: 40%;
+            height: 30%;
+            right: 0;
+            border-radius: 21px;
+            position: absolute;
+          }
+        }
         .description{
           background-color: whitesmoke;
           position: absolute;
@@ -200,16 +227,18 @@ Animation between componenets
 */
 
 ::-webkit-scrollbar {
-  width: 8px;
-  height:0;
-  
-
+  width: 15px;
 }
+
 
 
 ::-webkit-scrollbar-thumb {
- 
-  border-radius: 10px;
-  background: rgba(0, 0, 0, 0.479); 
+  box-shadow: inset 0 0 10px 10px black;
+  border: solid 5px transparent;
+  -webkit-border-radius: 7px;
+
 }
 
+::-webkit-scrollbar-corner {
+  background: rgba(0,0,0,0);
+}
