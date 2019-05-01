@@ -13,10 +13,6 @@ class UserHome extends Component {
     if(!this.props.user.accountSetUp) {
       history.push('/updateuser');
     }
-
-    for (let i ; i<10 ;i++){
-      this.props.fetchUserAlbums(i);
-  }
   }
 
   render() {

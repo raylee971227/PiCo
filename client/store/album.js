@@ -27,6 +27,12 @@ export const deleteAlbum = albumId => async dispatch => {
   dispatch(getAlbum(res))
 }
 
+export const fetchAllAlbums = () => async dispatch => {
+  const response = await axios.get('/api/albums');
+  const res = response.data
+  dispatch(getAlbum(res))
+}
+
 export const fetchAlbumByName = albumName => async dispatch => {
   let album
   try {
@@ -53,7 +59,6 @@ export const createNewAlbum = (albumInfo) => async dispatch => {
   let album
   try {
     album = await axios.post('/api/albums/', albumInfo);
-    
     dispatch(getAlbum(album.data))
   } catch (albumCreateError) {
     console.log("problem creating new album! x_x")
@@ -77,6 +82,8 @@ export const fetchUserAlbums = userId => async dispatch => {
     console.log(error);
   }
 }
+
+
 
 
 /**

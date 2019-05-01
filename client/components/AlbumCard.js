@@ -23,7 +23,7 @@ class AlbumCard extends Component {
         <div id="albumdetails">
           <ul>
             <li><h5 id="albumname">Album Name : {album.albumName}</h5></li>
-            <li><h5 id="albumowner">Album owner : {album.owner}</h5></li>
+            <li><h5 id="albumname">Album Description : {album.description}</h5></li>
 
           </ul>    
         </div>
