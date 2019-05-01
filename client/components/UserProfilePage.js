@@ -23,7 +23,6 @@ class UserProfilePage extends Component {
       <div id="profilepage">
             <Route path="" component={SearchAlbum} />
             <div id="usercard">
-                Welcome To Your Page
                <UserCard user={this.props.user} />
                <Link to="/updateuser">Edit Info</Link>
             </div>

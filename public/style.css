@@ -116,6 +116,16 @@ Animation between componenets
             width: 55%;
             background-color: whitesmoke;
             margin-bottom: 2%; }
+            body #app #page #main #profilepage #usercard #profileimage {
+              display: inline; }
+            body #app #page #main #profilepage #usercard #profiledetails {
+              display: inline;
+              position: absolute;
+              padding: 0% 2%;
+              margin-left: 1%;
+              font-size: 2.3vh; }
+              body #app #page #main #profilepage #usercard #profiledetails #profilename {
+                margin-bottom: 4%; }
           body #app #page #main #profilepage #SearchAlbum {
             background-color: whitesmoke;
             width: 37%;
@@ -124,7 +134,8 @@ Animation between componenets
             padding: 1.5%;
             overflow: scroll;
             border-radius: 21px;
-            position: absolute; }
+            position: absolute;
+            font-size: 2vh; }
             body #app #page #main #profilepage #SearchAlbum .InputBar {
               width: 71%;
               margin: 4% 0;
@@ -222,7 +233,11 @@ Animation between componenets
     text-decoration: none;
     cursor: pointer;
     transition: color, border-bottom .2s;
-    font-size: 2.3vh; }
+    font-size: 2.3vh;
+    transition: 0.1s;
+    transition-timing-function: ease-out; }
+  body .defaultbutton:hover {
+    transform: scale(1.1); }
   body ::-webkit-scrollbar {
     width: 15px; }
   body ::-webkit-scrollbar-thumb {
