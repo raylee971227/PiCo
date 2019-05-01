@@ -3,7 +3,7 @@ const {User} = require('../db/models')
 const {Storage} = require('@google-cloud/storage');
 const multer = require('multer')
 const path = require('path')
-module.exports = router
+
 
 const gcs = new Storage({
   projectId: process.env.GOOGLE_CLOUD_PROJECT,
@@ -99,7 +99,7 @@ router.get('/:id', async (req, res, next) => {
 // })
 
 router.put("/:id", upload.single('photo'), (req, res, next) => {
-  if(!req.file) {
+  // if(!req.file) {
     const edit = req.body;
     User.update(edit, {
       where: {
@@ -114,8 +114,50 @@ router.put("/:id", upload.single('photo'), (req, res, next) => {
           error: err
         });
       });
-  } else {
-    const gcsname = req.params.id + '-' + req.file.originalname;
+  // } else {
+  //   const gcsname = req.params.id + '-' + req.file.originalname;
+  //   const blob = bucket.file(gcsname);
+  //   const stream = blob.createWriteStream({
+  //     metadata: {
+  //       contentType: req.file.mimetype
+  //     }
+  //   });
+
+  //   stream.on('error', (err) => {
+  //     req.file.cloudStorageError = err;
+  //     next(err);
+  //   });
+
+  //   stream.on('finish', () => {
+  //     req.file.cloudStorageObject = gcsname;
+  //     req.file.cloudStoragePublicUrl = getPublicUrl(gcsname);
+  //     next();
+  //   });
+
+  //   stream.end(req.file.buffer);
+  //   const path = 'https://storage.googleapis.com/'+ bucketName+ '/' + gcsname;
+  //   blob.makePublic().then(() => {
+  //     res.status(200).send('Success!\n profilePic uploaded to:' + path);
+  //   });
+  //   User.update({profilePicture: path}, {
+  //     where: {
+  //       id: req.params.id
+  //     }
+  //   }).then(() => {
+  //     res.status(201).redirect('/updateuser')
+  //   })
+  //     .catch(err => {
+  //       console.log(err);
+  //       res.status(500).json({
+  //         error: err
+  //       });
+  //     });
+  // }
+});
+
+router.post('/profilephoto/:id', upload.single('photo'), (req, res, next) => {
+  console.log('hit')
+  const gcsname = req.params.id + '-' + req.file.originalname;
     const blob = bucket.file(gcsname);
     const stream = blob.createWriteStream({
       metadata: {
@@ -153,4 +195,6 @@ router.put("/:id", upload.single('photo'), (req, res, next) => {
         });
       });
   }
-});
+)
+
+module.exports = router

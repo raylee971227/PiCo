@@ -23,6 +23,7 @@ class Navbar extends Component {
     history.push(`/users/${this.props.user.id}`);
   }
 
+
   handlefilter(event) {
     event.preventDefault();
     var searched =  document.getElementById('albumbar').value;

@@ -15,10 +15,10 @@ const UserCard = props => {
         
         <ul>
           <li>
-            <h4>Emai: {user.email} </h4>
+            <h4>{user.email} </h4>
           </li>
           <li>
-            <h4> Account created on : {user.createdAt.slice(0,10)} </h4>
+            <h4>User since {user.createdAt.slice(0,10)} </h4>
           </li>
         </ul>
       </div> 
