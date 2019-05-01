@@ -28,7 +28,7 @@ class UserHome extends Component {
 
 
         <div id="useralbum">
-            <AlbumContainer albums={arr[0,1]} />
+            <AlbumContainer albums={arr} />
           </div>
       </div>
     )
