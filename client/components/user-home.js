@@ -21,7 +21,7 @@ class UserHome extends Component {
     return (
       <div id="homepage">
  
-        <h3>Welcome, {this.props.email}</h3>
+
 
         <div id="useralbum">
             <AlbumContainer albums={arr} />
