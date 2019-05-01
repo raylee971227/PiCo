@@ -11,13 +11,13 @@ const UserCard = props => {
       
       <img id="profileimage" src={user.profilePicture} width= '33%' height="33%"/>
       <div id="profiledetails">
-        <h2 id="profilename">Welcome back ! {user.firstName} {user.lastName}</h2>
+        <h2 id="profilename">{user.firstName} {user.lastName}</h2>
         <ul>
           <li>
-            <h3> Email : {user.email} </h3>
+            <h4>Emai: {user.email} </h4>
           </li>
           <li>
-            <h3> Account created on : {user.createdAt.slice(0,10)} </h3>
+            <h4> Account created on : {user.createdAt.slice(0,10)} </h4>
           </li>
         </ul>
       </div> 
