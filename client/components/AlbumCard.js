@@ -20,8 +20,8 @@ class AlbumCard extends Component {
         {(album != null)?(
         <React.Fragment><img src={album.thumbnail} onClick={this.onClick}/><div id="albumdetails">
         <ul>
-          <li><h2 id="albumname">Album Name : {album.albumName}</h2></li>
-          <h3 id="albumname">Album Description : {album.description}</h3>
+          <li><h2 id="albumname">{album.albumName}</h2></li>
+          <h3 id="albumname">{album.description}</h3>
         </ul>    
         </div></React.Fragment>):(null)}
       </div>
