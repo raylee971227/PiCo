@@ -41,7 +41,7 @@ const upload = multer({
 router.get('/', async (req, res, next) => {
   try {
     const albums = await Album.findAll({
-      attributes: ['albumName', 'albumId','thumbnail', 'owner']
+      attributes: ['albumName', 'albumId','thumbnail', 'owner', 'description']
     })
     res.json(albums)
   } catch (err) {

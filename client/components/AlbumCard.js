@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import history from '../history'
 import {deleteAlbum} from '../store/album'
+import {fetchSingleUser} from '../store/user'
 
 class AlbumCard extends Component {
   constructor(props) {
@@ -14,7 +15,6 @@ class AlbumCard extends Component {
   }
   render(){
     const {album} = this.props;
-
     return(
       <div id="albumcard">
         
@@ -22,13 +22,18 @@ class AlbumCard extends Component {
 
         <div id="albumdetails">
           <ul>
-            <li><h5 id="albumname">{album.albumName}</h5></li>
+            <li><h2 id="albumname">{album.albumName}</h2></li>
+            <h3 id="albumname">{album.description}</h3>
           </ul>    
         </div>
-       
-
       </div>
     )
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    user: state.user
   }
 }
 
@@ -36,11 +41,14 @@ const mapDispatchToProps = dispatch => {
   return { 
     deleteAlbumById: (albumId) => {
       dispatch(deleteAlbum(albumId))
+    },
+    getAlbumOwner: (ownerId) => {
+      dispatch(fetchSingleUser(ownerId))
     }
   }
 }
 
-const connectedAlbumCard = connect(null, mapDispatchToProps);
+const connectedAlbumCard = connect(mapStateToProps, mapDispatchToProps);
 
 
 export default connectedAlbumCard(AlbumCard)
