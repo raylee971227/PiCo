@@ -192,29 +192,13 @@ router.put('/:id', async (req, res, next) => {
   }
 })
 
-// Only delete the picture from the db. Photo still remains on the cloud
-// router.delete('/:id', async (req, res, next) => {
-//   try {
-//     var id = req.params.id;
-//     // Album.query('DELETE FROM users WHERE id = $1', [id], (error, results) => {
-//     //   if (error) {
-//     //     throw error
-//     //   }
-//     //   response.status(200).send(`User deleted with ID: ${id}`)
-//     // })
-//     await Album.destroy({where: {albumId: id}}).then(
-//       res.status(200).send('Album # ' + id + " successfully deleted"));
-//   } catch (err) {
-//     next(err);
-//   }
-// })
-
 router.put('/delete/:id', async (req, res, next) => {
   try {
     Album.destroy({where:{albumId: req.params.id}}) 
     res.status(200);
   } catch (error) {
     res.status(500);
-    console.log("Could not delete album with id # ")
+    console.error(error)
+    console.log("Could not delete album with id # " + req.params.id)
   }
 })

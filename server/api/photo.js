@@ -71,13 +71,15 @@ const upload = multer({
 router.get('/', async(req, res, next) => {
   try {
     const photo = await Photo.findAll({
-      attributes: ['photoId','albumId','photoPath']
+      attributes: ['photoId','albumId','photoPath', 'owner']
     })
     res.json(photo)
   } catch (err) {
     next(err)
   }
 });
+
+
 
 /**
  * API Endpoint: http://localhost:8080/api/photo
@@ -110,7 +112,7 @@ router.post("/:id/:userId", upload.array('photo'), (req, res, next) => {
     blob.makePublic().then(() => {
       res.status(200).send('Success!\n Image uploaded to:' + url);
     });
-    Photo.create({albumId: req.params.id,photoPath:url})
+    Photo.create({albumId: req.params.id,photoPath:url, owner: req.params.userId})
       .then(() => {
         res.status(201).redirect(`/users/${req.params.userId}`)
       })
@@ -122,49 +124,6 @@ router.post("/:id/:userId", upload.array('photo'), (req, res, next) => {
       });
   })
 });
-
-// router.post("/profilephoto/:id", upload.single('photo'), (req, res, next) => {
-//   if(!req.file) return next();
-//   const gcsname = req.file.originalname;
-//   const blob = bucket.file(gcsname);
-//   const stream = blob.createWriteStream({
-//     metadata: {
-//       contentType: req.file.mimetype
-//     }
-//   });
-
-//   stream.on('error', (err) => {
-//     req.file.cloudStorageError = err;
-//     next(err);
-//   });
-
-//   stream.on('finish', () => {
-//     req.file.cloudStorageObject = gcsname;
-//     req.file.cloudStoragePublicUrl = getPublicUrl(gcsname);
-//     next();
-//   });
-
-//   stream.end(req.file.buffer);
-//   const path = 'https://storage.googleapis.com/'+ bucketName+ '/' + gcsname;
-//   blob.makePublic().then(() => {
-//     res.status(200).send('Success!\n Image uploaded to:' + path);
-//   });
-//   // Photo.create({albumId: req.body.albumId,photoPath:path})
-//   //   .then(result => {
-//   //     console.log(result);
-//   //     res.status(201).json({
-//   //       message: "upload photo successfully"
-//   //     });
-//   //   })
-//   //   .catch(err => {
-//   //     console.log(err);
-//   //     res.status(500).json({
-//   //       error: err
-//   //     });
-//   //   });
-//   User.
-// });
-
 
 /**
  * API Endpoint: http://localhost:8080/api/photo/photoId
@@ -199,12 +158,32 @@ router.delete('/:id', async (req, res, next) => {
   }
 })
 
+router.put('/delete/:id', (req, res, next) => {
+  try {
+    Photo.destroy({
+      where: {photoId: req.params.id}
+    })
+    res.status(200)
+  } catch (error) {
+    res.status(500);
+    console.log("Could not delete photo with id # " + req.params.id)
+  }
+})
 
-
-
-
-
-
+router.put('/deletealbum/:id', (req, res, next) => {
+  try {
+    Photo.destroy({
+      where: {
+        albumId: req.params.id
+      }
+    })
+    res.status(200)
+  } catch (error) {
+    res.status(500)
+    console.error(error)
+    console.log("Could not delete photos in album # " + req.params.id);
+  }
+})
 
 
 
