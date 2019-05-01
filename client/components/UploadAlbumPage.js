@@ -60,14 +60,12 @@ class UploadAlbumPage extends Component {
                 <div>
                     <form>
                         <div>
-                            <small>Title:</small>
-                            <input name="albumName" type="text" value={this.state.albumName} onChange={this.handleChange}/>
+                            <input id="uploadbar"  className="InputBar" name="albumName" type="text" value={this.state.albumName} placeholder="Title" onChange={this.handleChange}/>
                         </div>
                         <div>
-                            <small>Description:</small>
-                            <input name="description" type="text" value={this.state.description} onChange={this.handleChange}/>
+                            <input id="uploadbar" className="InputBar" name="description" type="text" value={this.state.description} placeholder="Description" onChange={this.handleChange}/>
                             <div>
-                                <button onClick={this.makeAlbum}>Check Availability</button>
+                                <button className="defaultbutton" onClick={this.makeAlbum}>Check Availability</button>
                             </div>
                         </div>
                     </form>

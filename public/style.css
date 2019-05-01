@@ -20,7 +20,10 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  width: 100%; }
+  width: 100%;
+  /* 
+Animation between componenets
+*/ }
   body a {
     text-decoration: none; }
   body nav a {
@@ -34,14 +37,6 @@ body {
       background-color: #FFEBE4;
       background-repeat: none;
       background-size: cover; }
-      body #app #page .defaultbutton {
-        border: none;
-        font-family: expressway, sans-serif;
-        color: #2C6A97;
-        text-decoration: none;
-        cursor: pointer;
-        transition: color, border-bottom .2s;
-        font-size: 2.3vh; }
       body #app #page #Header {
         width: 100%;
         height: 16%;
@@ -116,13 +111,55 @@ body {
             border-radius: 22px;
             padding: 1.5%;
             background-color: whitesmoke; }
-          body #app #page #main #profilepage #albumupload {
+          body #app #page #main #profilepage #SearchAlbum {
             background-color: whitesmoke;
-            width: 40%;
-            height: 30%;
+            width: 37%;
+            height: 24%;
             right: 0;
+            padding: 1.5%;
+            overflow: scroll;
             border-radius: 21px;
             position: absolute; }
+            body #app #page #main #profilepage #SearchAlbum .InputBar {
+              width: 71%;
+              margin: 4% 0;
+              padding: 2% 3.6%;
+              border-radius: 10px;
+              border-style: none;
+              position: relative; }
+            body #app #page #main #profilepage #SearchAlbum .defaultbutton {
+              font-weight: bold;
+              font-size: 2.3vh;
+              padding: 1.2% 3.6%;
+              margin: -1% 0%;
+              width: 34%;
+              border-radius: 4px;
+              border-style: none; }
+            body #app #page #main #profilepage #SearchAlbum #uploadbar {
+              margin: 2% 0%; }
+        body #app #page #main #albumupload {
+          background-color: whitesmoke;
+          width: 37%;
+          height: 24%;
+          padding: 1.5%;
+          overflow: scroll;
+          border-radius: 21px;
+          position: absolute; }
+          body #app #page #main #albumupload .InputBar {
+            width: 71%;
+            margin: 2% 0;
+            padding: 2% 3.6%;
+            border-radius: 10px;
+            border-style: none;
+            position: relative; }
+          body #app #page #main #albumupload .defaultbutton {
+            font-weight: bold;
+            font-size: 2.3vh;
+            padding: 1.2% 3.6%;
+            margin: 1% 0%;
+            width: 34%;
+            border-radius: 4px;
+            border-style: none; }
         body #app #page #main .description {
           background-color: whitesmoke;
           position: absolute;
@@ -154,26 +191,27 @@ body {
             font-size: 2.3vh;
             /* text-align: center; */
             padding: 2% 4%; }
-
-.InputBar {
-  width: 71%;
-  padding: 2% 3.6%;
-  border-radius: 10px;
-  border-style: none;
-  position: relative; }
-
-/* 
-Animation between componenets
-*/
-::-webkit-scrollbar {
-  width: 15px; }
-
-::-webkit-scrollbar-thumb {
-  box-shadow: inset 0 0 10px 10px black;
-  border: solid 5px transparent;
-  -webkit-border-radius: 7px; }
-
-::-webkit-scrollbar-corner {
-  background: rgba(0, 0, 0, 0); }
+  body .InputBar {
+    width: 71%;
+    padding: 2% 3.6%;
+    border-radius: 10px;
+    border-style: none;
+    position: relative; }
+  body .defaultbutton {
+    border: none;
+    font-family: expressway, sans-serif;
+    color: #2C6A97;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color, border-bottom .2s;
+    font-size: 2.3vh; }
+  body ::-webkit-scrollbar {
+    width: 15px; }
+  body ::-webkit-scrollbar-thumb {
+    box-shadow: inset 0 0 10px 10px black;
+    border: solid 5px transparent;
+    -webkit-border-radius: 7px; }
+  body ::-webkit-scrollbar-corner {
+    background: rgba(0, 0, 0, 0); }
 
 /*# sourceMappingURL=style.css.map*/

@@ -7,7 +7,7 @@ import {fetchUserAlbums} from '../store/album'
 import {UserCard, AlbumContainer} from './';
 import {Link} from 'react-router-dom'
 import "../../public/style.css"
-import { UploadAlbumPage } from './'
+import { SearchAlbum } from './'
 
 
 
@@ -21,7 +21,7 @@ class UserProfilePage extends Component {
     const arr = Object.values(this.props.album)
     return (  
       <div id="profilepage">
-            <Route path="/" component={UploadAlbumPage} />
+            <Route path="" component={SearchAlbum} />
             <div id="usercard">
                 Welcome To Your Page
                <UserCard user={this.props.user} />

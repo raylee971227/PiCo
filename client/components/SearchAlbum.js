@@ -38,38 +38,16 @@ class Navbar extends Component {
 
   render() {
     return (
-      <div id="Header">
-        <nav id="Navbar">
-          <h1 className="defaultbutton" id ="Logo" href="/#" onClick={this.handlePiCo}>PiCo</h1>
-
-          {this.props.isLoggedIn ? (
-            <div className="navrack" id="loggedin">
-              {/* The navbar will show these links after you log in */}
-              <Link className="defaultbutton" id="navbutton" to="/home">Home</Link>
-              <a className="defaultbutton" id="navbutton" onClick={this.handleProfile}>My Profile</a>
-              <Link className="defaultbutton" id="navbutton" to="/upload">Upload</Link>
-
-              <a className="defaultbutton" id="navbutton" onClick={this.props.handleClick}>
-                Logout
-              </a>
-              
-            <form id="Search"  onSubmit={this.handleSearch}>
+      <div id="SearchAlbum">
+          <h2>Search an album !</h2>
+          <form id="Search"  onSubmit={this.handleSearch}>
                   <input 
                     className="InputBar"
                     type="text"
-                    placeholder="Search a User !"
+                    placeholder="Search an album"
                     />
                 <button className="defaultbutton" id="searchbutton" type="submit">  Search !</button>
             </form>
-            </div>
-          ) : (
-              <div className="navrack" >
-                {/* The navbar will show these links before you log in */}
-                <Link to="/login" className="defaultbutton" id="navbutton" className="defaultbutton">Login</Link>
-                <Link to="/signup" className="defaultbutton" id="navbutton" className="defaultbutton">Sign Up</Link>
-              </div>
-            )}
-        </nav>
       </div>
     )
   }
