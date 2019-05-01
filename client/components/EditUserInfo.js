@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { updateUser, me } from '../store/user';
 import history from '../history';
-
+import "../../public/style.css"
 
 class EditUserInfo extends Component {
   constructor(props) {
@@ -46,7 +46,7 @@ class EditUserInfo extends Component {
       <React.Fragment>
         {(this.props.user.accountSetUp) ? (<h3>Edit Your Information</h3>) : (<h3>Please fill out the required forms (*)</h3>)}
         <p>Profile Picture</p>
-              <img src={this.props.user.profilePicture} width="340" height="340"/>
+              <img class=". circular--square" src={this.props.user.profilePicture} width="340" height="340"/>
               <form id="profilePhotoUpload" action="/" method="post" encType="multipart/form-data">
                 <input type="file" name="photo" onChange={this.onUpload}></input>
                 <input type="submit" value="Upload Image" name="submit"></input>
