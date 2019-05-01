@@ -8,3 +8,5 @@ key.json
 npm-debug.log
 yarn-error.log
 public/style.css
+*.css
+public/style.css
