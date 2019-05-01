@@ -58,7 +58,7 @@ class Navbar extends Component {
                     id="Searchuser"
                     className="InputBar"
                     type="text"
-                    placeholder="Search an User !"
+                    placeholder="Search for a User !"
                     />
                 <button className="defaultbutton" id="searchbutton" type="submit">  Search !</button>
             </form>
