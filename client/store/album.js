@@ -5,6 +5,7 @@ import axios from 'axios'
  */
 const GET_ALBUM = 'GET_ALBUM'
 const GET_USERS_ALBUMS = 'GET_USERS_ALBUMS'
+const DELETE_ALBUM = 'DELETE_ALBUM'
 /**
  * INITIAL STATE
  */
@@ -17,24 +18,35 @@ const defaultAlbums = {}
  
 
 const getAlbum = album => ({type: GET_ALBUM, album})
-
 /**
  * THUNK CREATORS
  */
-
-export const fetchsingleAlbum = albumId => async dispatch => {
-  dispatch(getAlbum(targetuser));
-} 
+export const deleteAlbum = albumId => async dispatch => {
+  const response = await axios.put(`/api/albums/delete/${albumId}`)
+  const res = response.data
+  dispatch(getAlbum(res))
+}
 
 export const fetchAlbumByName = albumName => async dispatch => {
   let album
   try {
-    album = await axios.get(`/api/albums/${albumName}`);
-    dispatch(getAlbum(album.data));
+    album = await axios.get(`/api/albums/`);
+    const data = album.data;
+    const returnAlbum = data.filter((alb) => {
+      return(alb.albumName == albumName)
+    })
+    dispatch(getAlbum(returnAlbum));
   } catch (error) {
     console.log("Problem fetching album named " + albumName)
     console.log(error);
   }
+}
+
+export const fetchAlbumById = albumId => async dispatch => {
+  console.log('fetch album By ID')
+  const response = await axios.get(`/api/albums/${albumId}`);
+  const album = response.data
+  dispatch(getAlbum(album[0]));
 }
  
 export const createNewAlbum = (albumInfo) => async dispatch => {
@@ -65,6 +77,7 @@ export const fetchUserAlbums = userId => async dispatch => {
     console.log(error);
   }
 }
+
 
 /**
  * REDUCER

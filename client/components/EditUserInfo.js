@@ -34,7 +34,7 @@ class EditUserInfo extends Component {
   handleSubmit(evt) {
     evt.preventDefault();
     this.props.update(this.state, this.props.user.id);
-    history.push('/home')
+    history.push('/users/' + this.props.user.id)
   }
   onUpload(evt) {
     evt.preventDefault()

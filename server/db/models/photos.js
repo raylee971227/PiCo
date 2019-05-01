@@ -27,6 +27,10 @@ const Photos = db.define('Photos',
 	photoPath: {
 		type: Sequelize.STRING,
 		AllowNull: true
+	},
+	owner: {
+		type: Sequelize.INTEGER,
+		AllowNull: true
 	}
 });
 

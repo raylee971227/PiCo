@@ -8,10 +8,10 @@ export default class AlbumContainer extends Component {
     render() {
         const userAlbums = this.props.albums
         return (
-            <div >
-                {userAlbums.map((album) => {
-                   return(<div><AlbumCard album={album}/></div>)
-                })}
+            <div>
+                {(userAlbums.length == 0)?(<div>No albums to show :(</div>):(userAlbums.map((album) => {
+                   return(<AlbumCard album={album}/>)
+                }))}
             </div>
         )
     }
