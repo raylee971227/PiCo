@@ -17,8 +17,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 }
 
 @font-face {
-  font-family: 'expressway';
-  src: url('C:\Users\Minyoung\Pico\PiCo\public\expressway.ttf');
+ 
 }
 
 html{
@@ -47,19 +46,11 @@ body {
     background-color:whitesmoke;
     #page{
       height:100%;
-      background-image:url("https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+      background-color:#FFEBE4;
       background-repeat:none;
       background-size:cover;
 
-      .defaultbutton{
-        border: none;
-        font-family: expressway, sans-serif;
-        color:  #2C6A97;
-        text-decoration: none;
-        cursor:pointer;
-        transition: color, border-bottom .2s;
-        font-size: 2.3vh;
-      }
+      
       
       #Header{
         width:100%;
@@ -76,7 +67,7 @@ body {
           #Logo{
             font-size:11vh;
             color:#2C6A97;
-            font-family: expressway rg, sans-serif;
+            font-family:sans-serif;
             height: 100%;
             position:absolute;
             z-index:100;
@@ -88,9 +79,10 @@ body {
             width: 65%;
             height: 50%;
             margin-top: 4.7%;
-            margin-left: 23%;
+            margin-left: 15%;
+            text-align: right;
             position: absolute;
-            #Search{
+          .Search{
               z-index: 101;
               display: inline;
               display: inline;
@@ -98,12 +90,13 @@ body {
               height: 50%;
               margin: 0% 3%;
               position: absolute;
+              text-align:left;
 
               #searchbutton{
                 font-weight: bold;
                 font-size: 2.3vh;
                 padding: 1.2% 3.6%;
-                margin: 0% 6%;
+                margin: -1% 6%;
                 width: 34%;
                 position: absolute;
                 border-radius: 4px;
@@ -122,16 +115,148 @@ body {
               border-bottom: 4px solid #478CBE;
             }
           }
+
+          #loggedin{
+            margin-left: -8%;
+          }
         }
       }
 
       #main{
         position: absolute;
-        top: 21%;
+        top: 19%;
         margin: 0% 10%;
-        height: 74%;
+        height: 78%;
         width: 80%;
         z-index:100;
+        overflow:scroll;
+        #profilepage{
+          border-radius:5px;
+
+          #albumcard{
+            background-color: whitesmoke;
+            padding: 1%;
+            margin: 1% 0%;
+            border-radius: 21px;
+            width: 80%;
+            #albumdetails{
+              display: inline;
+              position: absolute;
+              height: 34%;
+              width: 57%;
+              padding: 1%;
+              margin-left: 2%;
+              }
+          }
+          #usercard{
+            border-radius: 22px;
+            padding: 1.5%;
+            /* position: absolute; */
+            width: 55%;
+            background-color: whitesmoke;
+            margin-bottom:2%;
+            #profileimage{
+              display:inline;
+            }
+            #profiledetails{
+              display: inline;
+              position: absolute;
+              padding: 0% 2%;
+              margin-left: 1%;              
+              font-size: 2.3vh;          
+              #profilename{
+                margin-bottom: 4%;
+              }
+            }
+          }
+
+          
+
+          #SearchAlbum{
+            background-color: whitesmoke;
+            width: 37%;
+            height: 24%;
+            right: 0;
+            padding: 1.5%;
+            overflow:scroll;
+            border-radius: 21px;
+            position: absolute;
+            font-size: 2vh;
+            
+            .InputBar{
+              width: 71%;
+              margin: 4% 0;
+              padding: 2% 3.6%;
+              border-radius: 10px;
+              border-style: none;
+              position: relative;
+
+            }
+            .defaultbutton{
+              font-weight: bold;
+              font-size: 2.3vh;
+              padding: 1.2% 3.6%;
+              margin: -1% 0%;
+              width: 34%;
+              border-radius: 4px;
+              border-style: none;
+            }
+            #uploadbar{
+              margin:2% 0%;
+            }
+          }
+        }
+
+        #homepage{
+          #albumcard{
+            background-color: whitesmoke;
+            padding: 1%;
+            margin: 1% 0%;
+            border-radius: 21px;
+            width: 80%;
+            #albumdetails{
+              display: inline;
+              position: absolute;
+              height: 34%;
+              width: 57%;
+              padding: 1%;
+              margin-left: 2%;
+              
+              #albumname{
+              }
+            }
+          }
+        }
+
+        #albumupload{
+          background-color: whitesmoke;
+          width: 37%;
+          height: 24%;
+          padding: 1.5%;
+          overflow:scroll;
+          border-radius: 21px;
+          position: absolute;
+
+          .InputBar{
+            width: 71%;
+            margin: 2% 0;
+            padding: 2% 3.6%;
+            border-radius: 10px;
+            border-style: none;
+            position: relative;
+
+          }
+          .defaultbutton{
+            font-weight: bold;
+            font-size: 2.3vh;
+            padding: 1.2% 3.6%;
+            margin: 1% 0%;
+            width: 34%;
+            border-radius: 4px;
+            border-style: none;
+          }
+        }
+      
         .description{
           background-color: whitesmoke;
           position: absolute;
@@ -171,8 +296,9 @@ body {
             padding: 2% 4%;
           }
         }
-      }
-    }
+
+        
+       }
   }
 }
 
@@ -187,23 +313,39 @@ body {
   
 }
 
+.defaultbutton{
+  border: none;
+  font-family: sans-serif;
+  color:  #2C6A97;
+  text-decoration: none;
+  cursor:pointer;
+  transition: color, border-bottom .2s;
+  font-size: 2.3vh;
+  transition:0.1s;
+  transition-timing-function: ease-out;
 
+}
 
+.defaultbutton:hover{
+  transform: scale(1.1);
+}
 /* 
 Animation between componenets
 */
 
 ::-webkit-scrollbar {
-  width: 8px;
-  height:0;
-  
-
+  width: 15px;
 }
+
 
 
 ::-webkit-scrollbar-thumb {
- 
-  border-radius: 10px;
-  background: rgba(0, 0, 0, 0.479); 
+  box-shadow: inset 0 0 10px 10px black;
+  border: solid 5px transparent;
+  -webkit-border-radius: 7px;
+
 }
 
+::-webkit-scrollbar-corner {
+  background: rgba(0,0,0,0);
+}}

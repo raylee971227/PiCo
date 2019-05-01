@@ -3,12 +3,24 @@ import {Link} from 'react-router-dom'
 
 const UserCard = props => {
   const {user} = props;
+  var today = new Date();
+
   return(
     <div>
       
-      <a>{user.firstName} {user.lastName}</a>
-      <img src={user.profilePicture} width="100" height="100"/>
       
+      <img id="profileimage" src={user.profilePicture} width= '33%' height="33%"/>
+      <div id="profiledetails">
+        <h2 id="profilename">Welcome back ! {user.firstName} {user.lastName}</h2>
+        <ul>
+          <li>
+            <h3> Email : {user.email} </h3>
+          </li>
+          <li>
+            <h3> Account created on : {user.createdAt.slice(0,10)} </h3>
+          </li>
+        </ul>
+      </div> 
     </div>
   )
 }

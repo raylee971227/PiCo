@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {withRouter, Route, Switch} from 'react-router-dom'
+
 import {fetchSingleUser} from '../store/user';
 import {fetchUserAlbums} from '../store/album'
 import {UserCard, AlbumContainer} from './';
 import {Link} from 'react-router-dom'
 import "../../public/style.css"
- 
+import { SearchAlbum } from './'
 
 
 
@@ -18,12 +20,16 @@ class UserProfilePage extends Component {
   render() {
     const arr = Object.values(this.props.album)
     return (  
-      <div>
-            
-            Welcome To Your Page
-            <UserCard user={this.props.user} />
-            <Link to="/updateuser">Edit Info</Link>
+      <div id="profilepage">
+            <Route path="" component={SearchAlbum} />
+            <div id="usercard">
+               <UserCard user={this.props.user} />
+               <Link to="/updateuser">Edit Info</Link>
+            </div>
+
+            <div id="useralbum">
             <AlbumContainer albums={arr} />
+            </div>
       </div>
     )  
   }

@@ -16,9 +16,17 @@ class AlbumCard extends Component {
     const {album} = this.props;
 
     return(
-      <div>
+      <div id="albumcard">
+        
         <img src={album.thumbnail} onClick={this.onClick}/>
-        <h5>{album.albumName}</h5>   
+
+        <div id="albumdetails">
+          <ul>
+            <li><h5 id="albumname">{album.albumName}</h5></li>
+          </ul>    
+        </div>
+       
+
       </div>
     )
   }

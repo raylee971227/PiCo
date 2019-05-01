@@ -12,7 +12,7 @@ class Navbar extends Component {
     super()
     this.handleProfile = this.handleProfile.bind(this)
     this.handlePiCo = this.handlePiCo.bind(this)
-    this.handleSearch = this.handleSearch.bind(this)
+    this.handleUSearch = this.handleUSearch.bind(this)
   }
 
   handlePiCo() {
@@ -23,16 +23,17 @@ class Navbar extends Component {
     history.push(`/users/${this.props.user.id}`);
   }
 
-  handleSearch(event) {
-    var searched =  document.getElementById('SearchBar').value
+  handleUSearch(event) {
+    //var searched =  document.getElementById('SearchBar').value
 
-
-    event.preventDefault();
-    return this.Search(searched);
+    //console.log(searched);
+    //event.preventDefault();
+    //return this.Search(searched);
   }
 
   Search(param1) {
-    // this.props.fetchUser(param1);
+
+     //this.props.fetchUsername(param1);
   
   }
 
@@ -43,26 +44,27 @@ class Navbar extends Component {
           <h1 className="defaultbutton" id ="Logo" href="/#" onClick={this.handlePiCo}>PiCo</h1>
 
           {this.props.isLoggedIn ? (
-            <div className="navrack">
+            <div className="navrack" id="loggedin">
               {/* The navbar will show these links after you log in */}
               <Link className="defaultbutton" id="navbutton" to="/home">Home</Link>
               <a className="defaultbutton" id="navbutton" onClick={this.handleProfile}>My Profile</a>
-              <Link className="defaultbutton" id="navbutton" to="/upload">Upload Album</Link>
+              <Link className="defaultbutton" id="navbutton" to="/upload">Upload</Link>
+
               <a className="defaultbutton" id="navbutton" onClick={this.props.handleClick}>
                 Logout
               </a>
               
-            <form id="Search"  onSubmit={this.handleSearch}>
+            <form className="Search"  onSubmit={this.handleUSearch}>
                   <input 
                     className="InputBar"
                     type="text"
-                    placeholder="Type Something !"
+                    placeholder="Search a User !"
                     />
                 <button className="defaultbutton" id="searchbutton" type="submit">  Search !</button>
             </form>
             </div>
           ) : (
-              <div className="navrack">
+              <div className="navrack" >
                 {/* The navbar will show these links before you log in */}
                 <Link to="/login" className="defaultbutton" id="navbutton" className="defaultbutton">Login</Link>
                 <Link to="/signup" className="defaultbutton" id="navbutton" className="defaultbutton">Sign Up</Link>
@@ -80,9 +82,8 @@ class Navbar extends Component {
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
-    user: state.user,
+    user:state.user,
     targetuser:state.targetuser,
-    error: state.error
   }
 }
 
@@ -91,7 +92,7 @@ const mapDispatch = dispatch => {
     handleClick() {
       dispatch(logout())
     },
-    fetchUser: username => {
+    fetchUsername: username => {
       dispatch(fetchUserFromID(username));
     }
   }

@@ -35,9 +35,9 @@ class Routes extends Component {
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
+            <Route path="/users/:id" component={UserProfilePage} />
             <Route path="/home" component={UserHome} />
             <Route path="/updateuser" component={EditUserInfo} />
-            <Route path="/users/:id" component={UserProfilePage} />
             <Route path="/upload" component={UploadAlbumPage} />
             <Route path="/profileviewer/:id" component={UserProfileViewer} />
             <Route path="/album/:id" component={AlbumViewer}/>

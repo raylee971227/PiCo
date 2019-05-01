@@ -5,6 +5,8 @@ import history from '../history'
 /**
  * COMPONENT
  */
+import {fetchUserAlbums} from '../store/album'
+import {UserCard, AlbumContainer} from './';
 
 class UserHome extends Component {
   componentDidMount() {
@@ -14,13 +16,17 @@ class UserHome extends Component {
   }
 
   render() {
-    return (
-      <div>
-{/*         <AlbumCard album = {this.props.album}/>
+    const arr = Object.values(this.props.album)
 
- */}      
-        <h3>Welcome, {this.props.email}</h3>
-        </div>
+    return (
+      <div id="homepage">
+ 
+
+
+        <div id="useralbum">
+            <AlbumContainer albums={arr} />
+          </div>
+      </div>
     )
   }
 }
@@ -33,14 +39,17 @@ const mapState = state => {
 /*     album:state.album
  */  
     email: state.user.email,
-    user: state.user
+    user: state.user,
+    userAlbums: state.album,
+    album: state.album
   }
 }
 const mapDispatch = dispatch => {
   return {
     fetchalbum: userId => {
-/*       dispatch(fetchsingleAlbum(userId));
- */    }
+
+      dispatch(fetchUserAlbums(userId))
+    }
   }
 }
 export default connect(mapState,mapDispatch)(UserHome)
