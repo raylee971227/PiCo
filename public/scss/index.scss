@@ -17,8 +17,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 }
 
 @font-face {
-  font-family: 'expressway';
-  src: url('C:\Users\Minyoung\Pico\PiCo\public\expressway.ttf');
+ 
 }
 
 html{
@@ -68,7 +67,7 @@ body {
           #Logo{
             font-size:11vh;
             color:#2C6A97;
-            font-family: expressway rg, sans-serif;
+            font-family:sans-serif;
             height: 100%;
             position:absolute;
             z-index:100;
@@ -83,7 +82,7 @@ body {
             margin-left: 15%;
             text-align: right;
             position: absolute;
-            #Search{
+          .Search{
               z-index: 101;
               display: inline;
               display: inline;
@@ -269,7 +268,7 @@ body {
 
 .defaultbutton{
   border: none;
-  font-family: expressway, sans-serif;
+  font-family: sans-serif;
   color:  #2C6A97;
   text-decoration: none;
   cursor:pointer;

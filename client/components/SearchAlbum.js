@@ -12,7 +12,7 @@ class Navbar extends Component {
     super()
     this.handleProfile = this.handleProfile.bind(this)
     this.handlePiCo = this.handlePiCo.bind(this)
-    this.handleSearch = this.handleSearch.bind(this)
+    this.handleASearch = this.handleASearch.bind(this)
   }
 
   handlePiCo() {
@@ -23,7 +23,7 @@ class Navbar extends Component {
     history.push(`/users/${this.props.user.id}`);
   }
 
-  handleSearch(event) {
+  handleASearch(event) {
     var searched =  document.getElementById('SearchBar').value
 
 
@@ -40,7 +40,7 @@ class Navbar extends Component {
     return (
       <div id="SearchAlbum">
           <h2>Search an album !</h2>
-          <form id="Search"  onSubmit={this.handleSearch}>
+          <form className="Search"  onSubmit={this.handleASearch}>
                   <input 
                     className="InputBar"
                     type="text"

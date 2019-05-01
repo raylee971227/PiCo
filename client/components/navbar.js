@@ -13,6 +13,7 @@ class Navbar extends Component {
     this.handleProfile = this.handleProfile.bind(this)
     this.handlePiCo = this.handlePiCo.bind(this)
     this.handleSearch = this.handleSearch.bind(this)
+    this.Search = this.Search.bind(this);
   }
 
   handlePiCo() {
@@ -26,13 +27,14 @@ class Navbar extends Component {
   handleSearch(event) {
     var searched =  document.getElementById('SearchBar').value
 
-
+    console.log(searched);
     event.preventDefault();
-    return this.Search(searched);
+    //return this.Search(searched);
   }
 
   Search(param1) {
-    // this.props.fetchUser(param1);
+
+     //this.props.fetchUsername(param1);
   
   }
 
@@ -53,7 +55,7 @@ class Navbar extends Component {
                 Logout
               </a>
               
-            <form id="Search"  onSubmit={this.handleSearch}>
+            <form className="Search"  onSubmit={this.handleSearch}>
                   <input 
                     className="InputBar"
                     type="text"
@@ -81,9 +83,8 @@ class Navbar extends Component {
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
-    user: state.user,
+    user:state.user,
     targetuser:state.targetuser,
-    error: state.error
   }
 }
 
@@ -92,7 +93,7 @@ const mapDispatch = dispatch => {
     handleClick() {
       dispatch(logout())
     },
-    fetchUser: username => {
+    fetchUsername: username => {
       dispatch(fetchUserFromID(username));
     }
   }
