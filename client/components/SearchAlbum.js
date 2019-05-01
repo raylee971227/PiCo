@@ -24,10 +24,8 @@ class Navbar extends Component {
   }
 
   handleASearch(event) {
+    event.preventDefault()
     var searched =  document.getElementById('SearchBar').value
-
-
-    event.preventDefault();
     return this.Search(searched);
   }
 
