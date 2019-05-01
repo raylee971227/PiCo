@@ -19,16 +19,14 @@ class UserHome extends Component {
     const arr = Object.values(this.props.album)
 
     return (
-      <div>
-{/*         <AlbumCard album = {this.props.album}/>
-
- */}      
+      <div id="homepage">
+ 
         <h3>Welcome, {this.props.email}</h3>
 
         <div id="useralbum">
             <AlbumContainer albums={arr} />
-            </div>
-        </div>
+          </div>
+      </div>
     )
   }
 }

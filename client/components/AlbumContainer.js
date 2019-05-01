@@ -8,7 +8,7 @@ export default class AlbumContainer extends Component {
     render() {
         const userAlbums = this.props.albums
         return (
-            <div>
+            <div >
                 {userAlbums.map((album) => {
                    return(<div><AlbumCard album={album}/></div>)
                 })}

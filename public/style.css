@@ -96,6 +96,19 @@ Animation between componenets
         overflow: scroll; }
         body #app #page #main #profilepage {
           border-radius: 5px; }
+          body #app #page #main #profilepage #albumcard {
+            background-color: whitesmoke;
+            padding: 1%;
+            margin: 1% 0%;
+            border-radius: 21px;
+            width: 80%; }
+            body #app #page #main #profilepage #albumcard #albumdetails {
+              display: inline;
+              position: absolute;
+              height: 34%;
+              width: 57%;
+              padding: 1%;
+              margin-left: 2%; }
           body #app #page #main #profilepage #usercard {
             border-radius: 22px;
             padding: 1.5%;
@@ -103,10 +116,6 @@ Animation between componenets
             width: 55%;
             background-color: whitesmoke;
             margin-bottom: 2%; }
-          body #app #page #main #profilepage #useralbum {
-            border-radius: 22px;
-            padding: 1.5%;
-            background-color: whitesmoke; }
           body #app #page #main #profilepage #SearchAlbum {
             background-color: whitesmoke;
             width: 37%;
@@ -133,6 +142,19 @@ Animation between componenets
               border-style: none; }
             body #app #page #main #profilepage #SearchAlbum #uploadbar {
               margin: 2% 0%; }
+        body #app #page #main #homepage #albumcard {
+          background-color: whitesmoke;
+          padding: 1%;
+          margin: 1% 0%;
+          border-radius: 21px;
+          width: 80%; }
+          body #app #page #main #homepage #albumcard #albumdetails {
+            display: inline;
+            position: absolute;
+            height: 34%;
+            width: 57%;
+            padding: 1%;
+            margin-left: 2%; }
         body #app #page #main #albumupload {
           background-color: whitesmoke;
           width: 37%;

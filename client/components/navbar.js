@@ -12,8 +12,7 @@ class Navbar extends Component {
     super()
     this.handleProfile = this.handleProfile.bind(this)
     this.handlePiCo = this.handlePiCo.bind(this)
-    this.handleSearch = this.handleSearch.bind(this)
-    this.Search = this.Search.bind(this);
+    this.handleUSearch = this.handleUSearch.bind(this)
   }
 
   handlePiCo() {
@@ -24,11 +23,11 @@ class Navbar extends Component {
     history.push(`/users/${this.props.user.id}`);
   }
 
-  handleSearch(event) {
-    var searched =  document.getElementById('SearchBar').value
+  handleUSearch(event) {
+    //var searched =  document.getElementById('SearchBar').value
 
-    console.log(searched);
-    event.preventDefault();
+    //console.log(searched);
+    //event.preventDefault();
     //return this.Search(searched);
   }
 
@@ -55,7 +54,7 @@ class Navbar extends Component {
                 Logout
               </a>
               
-            <form className="Search"  onSubmit={this.handleSearch}>
+            <form className="Search"  onSubmit={this.handleUSearch}>
                   <input 
                     className="InputBar"
                     type="text"

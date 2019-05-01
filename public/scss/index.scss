@@ -132,6 +132,21 @@ body {
         overflow:scroll;
         #profilepage{
           border-radius:5px;
+          #albumcard{
+            background-color: whitesmoke;
+            padding: 1%;
+            margin: 1% 0%;
+            border-radius: 21px;
+            width: 80%;
+            #albumdetails{
+              display: inline;
+              position: absolute;
+              height: 34%;
+              width: 57%;
+              padding: 1%;
+              margin-left: 2%;
+              }
+          }
           #usercard{
             border-radius: 22px;
             padding: 1.5%;
@@ -141,11 +156,7 @@ body {
             margin-bottom:2%;
           }
 
-          #useralbum{
-            border-radius: 22px;
-            padding: 1.5%;
-            background-color: whitesmoke;
-          }
+          
 
           #SearchAlbum{
             background-color: whitesmoke;
@@ -177,6 +188,27 @@ body {
             }
             #uploadbar{
               margin:2% 0%;
+            }
+          }
+        }
+
+        #homepage{
+          #albumcard{
+            background-color: whitesmoke;
+            padding: 1%;
+            margin: 1% 0%;
+            border-radius: 21px;
+            width: 80%;
+            #albumdetails{
+              display: inline;
+              position: absolute;
+              height: 34%;
+              width: 57%;
+              padding: 1%;
+              margin-left: 2%;
+              
+              #albumname{
+              }
             }
           }
         }
