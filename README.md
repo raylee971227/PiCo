@@ -5,7 +5,8 @@ Minyoung Na  / Ray Lee / Mrigank Saksena / Iris Huang
 In the directory of PiCo, 
 '''
 1. Make a postgres database(table) named 'pico' first
-2. npm run start-dev
+2. <Optional> If you would like to seed a database first, run npm seed
+3. npm run start-dev
 
 '''
 to create launch a react project at localhost:8080.
