@@ -24,16 +24,15 @@ class Navbar extends Component {
   }
 
   handleUSearch(event) {
-    //var searched =  document.getElementById('SearchBar').value
+    event.preventDefault();
+    var searched =  document.getElementById('Searchuser').value
 
-    //console.log(searched);
-    //event.preventDefault();
-    //return this.Search(searched);
+    return this.Search(searched);
   }
 
   Search(param1) {
 
-     //this.props.fetchUsername(param1);
+     this.props.fetchUsername(param1);
   
   }
 
@@ -56,12 +55,14 @@ class Navbar extends Component {
               
             <form className="Search"  onSubmit={this.handleUSearch}>
                   <input 
+                    id="Searchuser"
                     className="InputBar"
                     type="text"
-                    placeholder="Search a User !"
+                    placeholder="Search for a User !"
                     />
                 <button className="defaultbutton" id="searchbutton" type="submit">  Search !</button>
             </form>
+
             </div>
           ) : (
               <div className="navrack" >

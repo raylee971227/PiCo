@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { logout } from '../store'
-import {fetchUserFromID} from '../store/targetuser';
+import {fetchAlbumByName} from '../store/album';
 
 import history from '../history'
 import "../../public/style.css"
@@ -12,7 +12,7 @@ class Navbar extends Component {
     super()
     this.handleProfile = this.handleProfile.bind(this)
     this.handlePiCo = this.handlePiCo.bind(this)
-    this.handleASearch = this.handleASearch.bind(this)
+    this.handlefilter = this.handlefilter.bind(this)
   }
 
   handlePiCo() {
@@ -23,14 +23,15 @@ class Navbar extends Component {
     history.push(`/users/${this.props.user.id}`);
   }
 
-  handleASearch(event) {
-    event.preventDefault()
-    var searched =  document.getElementById('SearchBar').value
-    return this.Search(searched);
+
+  handlefilter(event) {
+    event.preventDefault();
+    var searched =  document.getElementById('albumbar').value;
+    return this.filter(searched);
   }
 
-  Search(param1) {
-    // this.props.fetchUser(param1);
+  filter(param1) {
+     this.props.filteralbum(param1);
   
   }
 
@@ -38,8 +39,9 @@ class Navbar extends Component {
     return (
       <div id="SearchAlbum">
           <h2>Search an album !</h2>
-          <form className="Search"  onSubmit={this.handleASearch}>
+          <form className="Search"  onSubmit={this.handlefilter}>
                   <input 
+                    id="albumbar"
                     className="InputBar"
                     type="text"
                     placeholder="Search an album"
@@ -68,8 +70,8 @@ const mapDispatch = dispatch => {
     handleClick() {
       dispatch(logout())
     },
-    fetchUser: username => {
-      dispatch(fetchUserFromID(username));
+    filteralbum: albumname => {
+      dispatch(fetchAlbumByName(albumname));
     }
   }
 }

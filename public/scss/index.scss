@@ -85,7 +85,6 @@ body {
           .Search{
               z-index: 101;
               display: inline;
-              display: inline;
               width: 31%;
               height: 50%;
               margin: 0% 3%;
@@ -130,6 +129,86 @@ body {
         width: 80%;
         z-index:100;
         overflow:scroll;
+        #profilename{
+          background-color: whitesmoke;
+    margin: 1% 0%;
+    width: 56%;
+    padding: 1%;
+    border-radius: 21px;
+        }
+        #targetprofilepage{
+          border-radius:5px;
+          #albumcard{
+            background-color: whitesmoke;
+            padding: 1%;
+            margin: 1% 0%;
+            border-radius: 21px;
+            width: 80%;
+            #albumdetails{
+              display: inline;
+              position: absolute;
+              height: 34%;
+              width: 57%;
+              padding: 1%;
+              margin-left: 2%;
+              }
+          }
+          #usercard{
+            border-radius: 22px;
+            padding: 1.5%;
+            /* position: absolute; */
+            width: 55%;
+            background-color: whitesmoke;
+            margin-bottom:2%;
+            #profileimage{
+              display:inline;
+            }
+            #profiledetails{
+              display: inline;
+              position: absolute;
+              padding: 0% 2%;
+              margin-left: 1%;              
+              font-size: 2.3vh;          
+              #profilename{
+                margin-bottom: 4%;
+              }
+            }
+          }
+          #SearchAlbum{
+            background-color: whitesmoke;
+            width: 37%;
+            height: 24%;
+            right: 0;
+            padding: 1.5%;
+            overflow:scroll;
+            border-radius: 21px;
+            position: absolute;
+            font-size: 2vh;
+            
+            .InputBar{
+              width: 71%;
+              margin: 4% 0;
+              padding: 2% 3.6%;
+              border-radius: 10px;
+              border-style: none;
+              position: relative;
+
+            }
+            .defaultbutton{
+              font-weight: bold;
+              font-size: 2.3vh;
+              padding: 1.2% 3.6%;
+              margin: -1% 0%;
+              width: 34%;
+              border-radius: 4px;
+              border-style: none;
+            }
+            #uploadbar{
+              margin:2% 0%;
+            }
+          }
+        }
+
         #profilepage{
           border-radius:5px;
 

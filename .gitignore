@@ -7,3 +7,6 @@ key.json
 .DS_Store
 npm-debug.log
 yarn-error.log
+public/style.css
+*.css
+public/style.css

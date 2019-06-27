@@ -35,7 +35,7 @@ export const fetchUserFromID = username => async dispatch => {
   const tempres = await axios.get(`/api/users/`);
   let errorflag = true;
 
-  for (var i = 0; i < tempres.data.length; i++) {
+  for (var i = 0; i < 100;/* tempres.data.length; */ i++) {
     if (username == tempres.data[i].userName  ){
       const res = await axios.get(`/api/users/${i+1}`);
       const targetuser = res.data[0];

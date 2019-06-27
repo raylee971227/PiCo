@@ -16,6 +16,7 @@ class AlbumCard extends Component {
     const {album} = this.props;
     return(
       <div id="albumcard">
+
         {(album != null)?(
         <React.Fragment><img src={album.thumbnail} onClick={this.onClick}/><div id="albumdetails">
         <ul>

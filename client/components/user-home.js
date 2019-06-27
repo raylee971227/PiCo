@@ -21,9 +21,11 @@ class UserHome extends Component {
     return (
       <div id="homepage">
         <div id="useralbum">
+
             <h2>Dashboard</h2>
             <AlbumContainer albums={arr}/>
-        </div>
+
+      </div>
       </div>
     )
   }
